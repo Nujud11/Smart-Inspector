@@ -1,0 +1,825 @@
+{% extends "base.html" %}
+
+{% block title %}
+نتيجة تحليل الحادث
+{% endblock %}
+
+{% block content %}
+
+<section class="result-page">
+    <div class="container">
+
+        <div class="steps result-steps">
+            <div class="step complete">
+                <span>✓</span>
+                رفع الصور
+            </div>
+
+            <div class="step-line complete"></div>
+
+            <div class="step complete">
+                <span>✓</span>
+                التحقق
+            </div>
+
+            <div class="step-line complete"></div>
+
+            <div
+                class="step
+                {% if status == 'completed' %}complete{% else %}active{% endif %}"
+            >
+                <span>
+                    {% if status == "completed" %}✓{% else %}3{% endif %}
+                </span>
+                التحليل
+            </div>
+
+            <div
+                class="step-line
+                {% if status == 'completed' %}complete{% endif %}"
+            ></div>
+
+            <div
+                class="step
+                {% if status == 'completed' %}active{% endif %}"
+            >
+                <span>4</span>
+                التقرير
+            </div>
+        </div>
+
+
+        {% if status == "error" %}
+
+            <section class="state-card error-state">
+                <div class="state-icon error-icon">!</div>
+
+                <span class="section-label danger-label">
+                    خطأ في التحليل
+                </span>
+
+                <h1>تعذر إكمال تحليل الحادث</h1>
+
+                <p>
+                    حدث خطأ أثناء معالجة الصور أو الاتصال بخدمة
+                    التحليل البصري.
+                </p>
+
+                <div class="technical-message">
+                    {{ error_message }}
+                </div>
+
+                <div class="center-actions">
+                    <a
+                        href="{{ url_for('new_case') }}"
+                        class="primary-button"
+                    >
+                        المحاولة مرة أخرى
+                    </a>
+
+                    <a
+                        href="{{ url_for('index') }}"
+                        class="secondary-button"
+                    >
+                        العودة للرئيسية
+                    </a>
+                </div>
+            </section>
+
+
+        {% elif status == "validation_failed" %}
+
+            <section class="state-card warning-state">
+                <div class="state-icon warning-icon">⌁</div>
+
+                <span class="section-label warning-label">
+                    مرحلة التحقق
+                </span>
+
+                <h1>الصور غير جاهزة للتحليل المتقدم</h1>
+
+                <p>
+                    لم تحقق الصور شروط اكتشاف المركبات المطلوبة،
+                    لذلك لم يتم إرسالها إلى Gemini.
+                </p>
+
+                <div class="validation-message">
+                    <strong>سبب الرفض</strong>
+                    <span>{{ yolo.reason }}</span>
+                </div>
+
+                <div class="validation-summary">
+                    <div class="compact-stat">
+                        <span>متوسط ثقة YOLO</span>
+                        <strong>
+                            {{ yolo.overall_confidence }}%
+                        </strong>
+                    </div>
+
+                    <div class="compact-stat">
+                        <span>الصور المقبولة</span>
+                        <strong>
+                            {{ yolo.valid_images }}
+                            /
+                            {{ yolo.required_valid_images }}
+                        </strong>
+                    </div>
+
+                    <div class="compact-stat">
+                        <span>حالة Gemini</span>
+                        <strong class="muted-value">
+                            لم يتم التشغيل
+                        </strong>
+                    </div>
+                </div>
+
+                {% if yolo_images %}
+                    <div class="result-section">
+                        <div class="result-section-heading">
+                            <div>
+                                <span class="section-label">
+                                    نتائج YOLO
+                                </span>
+
+                                <h2>اكتشاف المركبات في الصور</h2>
+                            </div>
+                        </div>
+
+                        <div class="detection-gallery">
+                            {% for item in yolo_images %}
+                                <article class="detection-card">
+                                    <div class="detection-image">
+                                        <img
+                                            src="{{ item.image_url }}"
+                                            alt="نتيجة اكتشاف المركبات"
+                                        >
+                                    </div>
+
+                                    <div class="detection-details">
+                                        <span>
+                                            الصورة {{ loop.index }}
+                                        </span>
+
+                                        <div>
+                                            <b>
+                                                {{ item.vehicle_count }}
+                                            </b>
+                                            مركبات
+                                        </div>
+
+                                        <div>
+                                            ثقة
+                                            <b>
+                                                {{ item.average_confidence }}%
+                                            </b>
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="tips-card">
+                    <div class="tips-icon">i</div>
+
+                    <div>
+                        <h3>لتحسين نتيجة التحقق</h3>
+
+                        <ul>
+                            <li>
+                                تأكدي من ظهور المركبتين كاملتين.
+                            </li>
+
+                            <li>
+                                تجنبي الصور البعيدة أو شديدة الظلام.
+                            </li>
+
+                            <li>
+                                استخدمي زوايا تظهر مناطق الضرر بوضوح.
+                            </li>
+
+                            <li>
+                                تأكدي أن الصور جميعها للحادث نفسه.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="center-actions">
+                    <a
+                        href="{{ url_for('new_case') }}"
+                        class="primary-button"
+                    >
+                        رفع صور جديدة
+                    </a>
+
+                    <a
+                        href="{{ url_for('index') }}"
+                        class="secondary-button"
+                    >
+                        العودة للرئيسية
+                    </a>
+                </div>
+            </section>
+
+
+        {% elif status == "completed" %}
+
+            <section class="report-hero">
+                <div class="report-hero-content">
+                    <div class="report-status">
+                        <span class="status-dot"></span>
+                        اكتمل التحليل
+                    </div>
+
+                    <h1>تقرير التحليل المروري الأولي</h1>
+
+                    <p>
+                        تمت معالجة الصور عبر ثلاث طبقات تقنية
+                        مستقلة، ثم تطبيق محرك القواعد على الأدلة
+                        البصرية المستخرجة.
+                    </p>
+
+                    <div class="case-information">
+                        <div>
+                            <span>رقم الحالة</span>
+                            <strong>{{ case_id }}</strong>
+                        </div>
+
+                        <div>
+                            <span>السيناريو المرجح</span>
+                            <strong>{{ rule.scenario }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="confidence-ring">
+                    <svg viewBox="0 0 120 120">
+                        <circle
+                            class="ring-background"
+                            cx="60"
+                            cy="60"
+                            r="50"
+                        ></circle>
+
+                        <circle
+                            class="ring-progress"
+                            cx="60"
+                            cy="60"
+                            r="50"
+                            style="
+                                --progress:
+                                {{ final_confidence }};
+                            "
+                        ></circle>
+                    </svg>
+
+                    <div class="ring-content">
+                        <strong>{{ final_confidence }}%</strong>
+                        <span>الثقة النهائية</span>
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="report-tabs">
+                <button
+                    type="button"
+                    class="report-tab active"
+                    data-tab="summary"
+                >
+                    ملخص التقرير
+                </button>
+
+                <button
+                    type="button"
+                    class="report-tab"
+                    data-tab="evidence"
+                >
+                    الأدلة البصرية
+                </button>
+
+                <button
+                    type="button"
+                    class="report-tab"
+                    data-tab="detection"
+                >
+                    صور YOLO
+                </button>
+
+                <button
+                    type="button"
+                    class="report-tab"
+                    data-tab="technical"
+                >
+                    التفاصيل التقنية
+                </button>
+            </div>
+
+
+            <!-- ملخص التقرير -->
+            <div
+                class="tab-panel active"
+                id="tab-summary"
+            >
+                <div class="report-summary-grid">
+                    <article class="main-result-card">
+                        <div class="card-top-row">
+                            <div>
+                                <span class="small-label">
+                                    نتيجة محرك القواعد
+                                </span>
+
+                                <h2>{{ rule.scenario }}</h2>
+                            </div>
+
+                            {% if rule.matched %}
+                                <span class="match-badge success">
+                                    تمت مطابقة الأدلة مع القاعدة
+                                </span>
+                            {% else %}
+                                <span class="match-badge warning">
+                                    تحتاج مراجعة
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        <div class="rule-meta">
+                            <div class="rule-reference">
+                                {% if rule.rule_id %}
+                                    <span>معرف القاعدة</span>
+                                    <strong>{{ rule.rule_id }}</strong>
+                                {% else %}
+                                    <span>القاعدة</span>
+                                    <strong>لم تتم المطابقة</strong>
+                                {% endif %}
+                            </div>
+
+                            {% if rule.rule_score is defined %}
+                                <div class="rule-reference rule-score-reference">
+                                    <span>درجة مطابقة الأدلة</span>
+                                    <strong>{{ rule.rule_score }} / 100</strong>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="decision-explanation">
+                            <h3>تفسير القرار</h3>
+                            <p>{{ rule.explanation }}</p>
+                        </div>
+                    </article>
+
+                    <aside class="case-overview-card">
+                        <span class="small-label">
+                            ملخص الحالة
+                        </span>
+
+                        <div class="overview-item">
+                            <span>عدد المركبات</span>
+                            <strong>{{ vision.vehicle_count }}</strong>
+                        </div>
+
+                        <div class="overview-item">
+                            <span>نوع الطريق</span>
+                            <strong>
+                                {{ translate_value(vision.road_type) }}
+                            </strong>
+                        </div>
+
+                        <div class="overview-item">
+                            <span>الثقة البصرية</span>
+                            <strong>
+                                {{ vision.visual_confidence }}%
+                            </strong>
+                        </div>
+
+                        <div class="overview-item">
+                            <span>ثقة القاعدة</span>
+                            <strong>
+                                {{ rule.rule_confidence }}%
+                            </strong>
+                        </div>
+                    </aside>
+                </div>
+
+
+                <section class="result-section">
+                    <div class="result-section-heading">
+                        <div>
+                            <span class="section-label">
+                                توزيع المسؤولية
+                            </span>
+
+                            <h2>النسب التجريبية المقترحة</h2>
+
+                            <p>
+                                تم حساب النسب بواسطة محرك القواعد
+                                المحلي، وليس بواسطة Gemini.
+                            </p>
+                        </div>
+                    </div>
+
+                    {% if rule.vehicle_faults %}
+                        <div class="fault-grid">
+                            {% for vehicle_id, percentage
+                                in rule.vehicle_faults.items() %}
+                                <article class="fault-card">
+                                    <div class="vehicle-avatar">
+                                        🚘
+                                    </div>
+
+                                    <div>
+                                        <span>
+                                            {% if vehicle_id == "vehicle_a" %}
+                                                المركبة الأولى
+                                            {% elif vehicle_id == "vehicle_b" %}
+                                                المركبة الثانية
+                                            {% else %}
+                                                {{ vehicle_id }}
+                                            {% endif %}
+                                        </span>
+
+                                        <strong>
+                                            {{ percentage }}%
+                                        </strong>
+                                    </div>
+
+                                    <div class="fault-progress">
+                                        <span
+                                            style="
+                                                width:
+                                                {{ percentage }}%;
+                                            "
+                                        ></span>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="no-fault-result">
+                            <span>!</span>
+
+                            <div>
+                                <h3>
+                                    لم يتم إصدار نسبة مسؤولية
+                                </h3>
+
+                                <p>
+                                    {{ rule.recommendation }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </section>
+
+
+                <section class="recommendation-card">
+                    <div class="recommendation-icon">⚖</div>
+
+                    <div>
+                        <span>توصية النظام</span>
+                        <h3>{{ rule.recommendation }}</h3>
+                    </div>
+                </section>
+            </div>
+
+
+            <!-- الأدلة البصرية -->
+            <div
+                class="tab-panel"
+                id="tab-evidence"
+            >
+                <section class="result-section">
+                    <div class="result-section-heading">
+                        <div>
+                            <span class="section-label">
+                                المركبات
+                            </span>
+
+                            <h2>الأدلة البصرية المستخرجة</h2>
+
+                            <p>
+                                استُخرجت البيانات التالية آليًا من الصور
+                                باستخدام Gemini Vision، وقد تحتوي على نسبة
+                                خطأ، ولا تمثل قرارًا قانونيًا أو مروريًا نهائيًا.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="vehicle-evidence-grid">
+                        {% for vehicle in vision.vehicles %}
+                            <article class="vehicle-evidence-card">
+                                <div class="vehicle-card-header">
+                                    <div class="vehicle-color-dot"></div>
+
+                                    <div>
+                                        <span>
+                                            {% if vehicle.identifier
+                                                == "vehicle_a" %}
+                                                المركبة الأولى
+                                            {% elif vehicle.identifier
+                                                == "vehicle_b" %}
+                                                المركبة الثانية
+                                            {% else %}
+                                                {{ vehicle.identifier }}
+                                            {% endif %}
+                                        </span>
+
+                                        <h3>
+
+                                            {{ translate_value(vehicle.color) }}
+                                            {{ translate_value(
+                                                vehicle.vehicle_type
+                                            ) }}
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="evidence-properties">
+                                    <div>
+                                        <span>الموقع النسبي</span>
+                                        <strong>
+                                            {{ translate_value(
+                                                vehicle.relative_position
+                                            ) }}
+                                        </strong>
+                                    </div>
+
+                                    <div>
+                                        <span>موضع الضرر</span>
+                                        <strong>
+                                            {{ translate_value(
+                                                vehicle.visible_damage
+                                            ) }}
+                                        </strong>
+                                    </div>
+
+                                    <div>
+                                        <span>حالة الحركة</span>
+                                        <strong>
+                                            {{ translate_value(
+                                                vehicle.motion_role
+                                            ) }}
+                                        </strong>
+                                    </div>
+                                </div>
+
+                                <div class="damage-description">
+                                    <span>وصف الضرر</span>
+                                    <p>
+                                        {{ vehicle.damage_description }}
+                                    </p>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+
+
+                <div class="two-column-results">
+                    <article class="evidence-list-card positive">
+                        <div class="list-card-heading">
+                            <span>✓</span>
+                            <h3>الأدلة الداعمة</h3>
+                        </div>
+
+                        {% if vision.visual_evidence %}
+                            <ul>
+                                {% for item in vision.visual_evidence %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="empty-text">
+                                لم يتم تسجيل أدلة داعمة.
+                            </p>
+                        {% endif %}
+                    </article>
+
+                    <article class="evidence-list-card caution">
+                        <div class="list-card-heading">
+                            <span>!</span>
+                            <h3>القيود والتعارضات</h3>
+                        </div>
+
+                        {% set issues =
+                            vision.inconsistencies
+                            + vision.limitations
+                        %}
+
+                        {% if issues %}
+                            <ul>
+                                {% for item in issues %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="empty-text">
+                                لم يتم اكتشاف تعارضات واضحة.
+                            </p>
+                        {% endif %}
+                    </article>
+                </div>
+            </div>
+
+
+            <!-- صور YOLO -->
+            <div
+                class="tab-panel"
+                id="tab-detection"
+            >
+                <section class="result-section">
+                    <div class="result-section-heading">
+                        <div>
+                            <span class="section-label">
+                                YOLOv8 Object Detection
+                            </span>
+
+                            <h2>اكتشاف المركبات بواسطة YOLOv8</h2>
+
+                            <p>
+                                يوضح هذا القسم المركبات المكتشفة ودرجة الثقة
+                                في كل صورة قبل إرسالها إلى مرحلة التحليل البصري.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="detection-gallery">
+                        {% for item in yolo_images %}
+                            <article class="detection-card">
+                                <a
+                                    href="{{ item.image_url }}"
+                                    target="_blank"
+                                    class="detection-image"
+                                >
+                                    <img
+                                        src="{{ item.image_url }}"
+                                        alt="YOLO detection"
+                                    >
+
+                                    <span class="expand-image">
+                                        ↗
+                                    </span>
+                                </a>
+
+                                <div class="detection-details">
+                                    <span>
+                                        الصورة {{ loop.index }}
+                                    </span>
+
+                                    <div>
+                                        <b>
+                                            {{ item.vehicle_count }}
+                                        </b>
+                                        مركبات
+                                    </div>
+
+                                    <div>
+                                        الثقة
+                                        <b>
+                                            {{ item.average_confidence }}%
+                                        </b>
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+
+
+            <!-- التفاصيل التقنية -->
+            <div
+                class="tab-panel"
+                id="tab-technical"
+            >
+                <section class="technical-grid">
+                    <article class="technical-score-card yolo-card">
+                        <div class="technical-icon technical-text-icon">YOLO</div>
+                        <span>YOLOv8</span>
+                        <strong>
+                            {{ yolo.overall_confidence }}%
+                        </strong>
+                        <p>
+                            اكتشاف المركبات والتحقق من جودة الصور.
+                        </p>
+                    </article>
+
+                    <article class="technical-score-card gemini-card">
+                        <div class="technical-icon technical-text-icon">Gemini</div>
+                        <span>Gemini Vision</span>
+                        <strong>
+                            {{ vision.visual_confidence }}%
+                        </strong>
+                        <p>
+                            تحليل المشهد واستخراج الأدلة البصرية.
+                        </p>
+                    </article>
+
+                    <article class="technical-score-card rule-card">
+                        <div class="technical-icon technical-text-icon">Rules</div>
+                        <span>Rule Engine</span>
+                        <strong>
+                            {{ rule.rule_confidence }}%
+                        </strong>
+                        <p>
+                            مطابقة الأدلة مع القواعد المبرمجة.
+                        </p>
+                    </article>
+
+                    <article class="technical-score-card final-card">
+                        <div class="technical-icon">✓</div>
+                        <span>الثقة النهائية</span>
+                        <strong>
+                            {{ final_confidence }}%
+                        </strong>
+                        <p>
+                            متوسط موزون للمكونات الثلاثة.
+                        </p>
+                    </article>
+                </section>
+
+                <section class="architecture-card">
+                    <span class="section-label">
+                        System Architecture
+                    </span>
+
+                    <h2>مسار اتخاذ القرار</h2>
+
+                    <div class="architecture-flow">
+                        <div class="architecture-node">
+                            <span>01</span>
+                            <strong>صور الحادث</strong>
+                            <small>Multi-view Input</small>
+                        </div>
+
+                        <i>←</i>
+
+                        <div class="architecture-node">
+                            <span>02</span>
+                            <strong>YOLO</strong>
+                            <small>Vehicle Validation</small>
+                        </div>
+
+                        <i>←</i>
+
+                        <div class="architecture-node">
+                            <span>03</span>
+                            <strong>Gemini</strong>
+                            <small>Visual Evidence</small>
+                        </div>
+
+                        <i>←</i>
+
+                        <div class="architecture-node">
+                            <span>04</span>
+                            <strong>القواعد</strong>
+                            <small>Decision Engine</small>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+            <div class="report-disclaimer">
+                <div class="disclaimer-icon">i</div>
+
+                <p>
+                    هذا التقرير ناتج عن نموذج أولي تجريبي،
+                    ولا يعد قرارًا قانونيًا أو مروريًا معتمدًا.
+                    يجب إتاحة الاعتراض والمراجعة البشرية قبل أي
+                    استخدام فعلي.
+                </p>
+            </div>
+
+
+            <div class="final-actions">
+                <a
+                    href="{{ url_for('new_case') }}"
+                    class="primary-button"
+                >
+                    تسجيل حادث جديد
+                </a>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="window.print()"
+                >
+                    طباعة التقرير
+                </button>
+
+                <a
+                    href="{{ url_for('index') }}"
+                    class="text-link-button"
+                >
+                    العودة للرئيسية
+                </a>
+            </div>
+
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}
+المحقق المروري الذكي
+{% endblock %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <div class="eyebrow">
+                <span></span>
+                نظام هجين لتحليل الحوادث
+            </div>
+
+            <h1>
+                توثيق الحادث.
+                <br>
+                تحليل الأدلة.
+                <br>
+                <span>تقرير قابل للتفسير.</span>
+            </h1>
+
+            <p class="hero-lead">
+                نموذج أولي يجمع بين YOLO لاكتشاف المركبات،
+                وGemini لفهم الأدلة البصرية، ومحرك قواعد مستقل
+                لتقديم تحليل أولي للحوادث المرورية البسيطة.
+            </p>
+
+            <div class="hero-actions">
+                <a
+                    href="{{ url_for('new_case') }}"
+                    class="primary-button large"
+                >
+                    <span>تسجيل حادث جديد</span>
+                    <span class="button-arrow">←</span>
+                </a>
+
+                <a
+                    href="#how-it-works"
+                    class="secondary-button large"
+                >
+                    استعراض آلية العمل
+                </a>
+            </div>
+
+            <div class="hero-trust">
+                <div>
+                    <strong>3</strong>
+                    <span>طبقات تحليل</span>
+                </div>
+
+                <div>
+                    <strong>4</strong>
+                    <span>زوايا للحادث</span>
+                </div>
+
+                <div>
+                    <strong>100%</strong>
+                    <span>قرار قابل للتفسير</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="visual-glow"></div>
+
+            <div class="system-card">
+                <div class="system-card-header">
+                    <span>تحليل حالة مرورية</span>
+
+                    <div class="live-indicator">
+                        <i></i>
+                        نشط
+                    </div>
+                </div>
+
+                <div class="car-scene">
+                    <div class="road-lines"></div>
+
+                    <div class="vehicle vehicle-front">
+                        🚙
+                    </div>
+
+                    <div class="collision-marker">✦</div>
+
+                    <div class="vehicle vehicle-back">
+                        🚗
+                    </div>
+                </div>
+
+                <div class="analysis-list">
+                    <div class="analysis-item complete">
+                        <span class="analysis-icon">✓</span>
+
+                        <div>
+                            <strong>اكتشاف المركبات</strong>
+                            <small>YOLO Object Detection</small>
+                        </div>
+
+                        <b>94%</b>
+                    </div>
+
+                    <div class="analysis-item complete">
+                        <span class="analysis-icon">✓</span>
+
+                        <div>
+                            <strong>تحليل الضرر</strong>
+                            <small>Multimodal Vision</small>
+                        </div>
+
+                        <b>91%</b>
+                    </div>
+
+                    <div class="analysis-item active">
+                        <span class="analysis-icon">⚖</span>
+
+                        <div>
+                            <strong>تطبيق القاعدة</strong>
+                            <small>Traffic Rule Engine</small>
+                        </div>
+
+                        <b>جارٍ</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section
+    class="process-section"
+    id="how-it-works"
+>
+    <div class="container">
+        <div class="section-heading centered">
+            <span class="section-label">آلية النظام</span>
+
+            <h2>ثلاث طبقات لاتخاذ قرار أكثر وضوحًا</h2>
+
+            <p>
+                لكل تقنية وظيفة مستقلة، ولا يترك النظام قرار
+                المسؤولية للنموذج اللغوي وحده.
+            </p>
+        </div>
+
+        <div class="process-grid">
+            <article class="process-card">
+                <span class="process-number">01</span>
+
+                <div class="process-icon blue">⌗</div>
+
+                <h3>التحقق من الصور</h3>
+
+                <p>
+                    يكتشف YOLO المركبات ويقيس وضوحها قبل إرسال
+                    الصور إلى مرحلة التحليل المتقدم.
+                </p>
+
+                <div class="technology-label">YOLOv8</div>
+            </article>
+
+            <article class="process-card featured">
+                <span class="process-number">02</span>
+
+                <div class="process-icon purple">✦</div>
+
+                <h3>استخراج الأدلة</h3>
+
+                <p>
+                    يحلل Gemini جميع الزوايا معًا ويحدد المواقع
+                    النسبية ومناطق الضرر والتعارضات.
+                </p>
+
+                <div class="technology-label">Gemini Vision</div>
+            </article>
+
+            <article class="process-card">
+                <span class="process-number">03</span>
+
+                <div class="process-icon green">⚖</div>
+
+                <h3>تطبيق القواعد</h3>
+
+                <p>
+                    يطابق محرك Python الأدلة المستخرجة مع قواعد
+                    ثابتة وقابلة للمراجعة والاختبار.
+                </p>
+
+                <div class="technology-label">Rule Engine</div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-card">
+            <div>
+                <span>جاهزة لتجربة النموذج؟</span>
+                <h2>ابدئي بتحليل حادث مروري جديد</h2>
+            </div>
+
+            <a
+                href="{{ url_for('new_case') }}"
+                class="light-button"
+            >
+                بدء التحليل
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

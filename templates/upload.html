@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}
+تسجيل حادث جديد
+{% endblock %}
+
+{% block content %}
+
+<section class="page-section upload-page">
+    <div class="container narrow-container">
+
+        <div class="steps">
+            <div class="step active">
+                <span>1</span>
+                رفع الصور
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+                <span>2</span>
+                التحقق
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+                <span>3</span>
+                التحليل
+            </div>
+
+            <div class="step-line"></div>
+
+            <div class="step">
+                <span>4</span>
+                التقرير
+            </div>
+        </div>
+
+        <div class="page-heading centered">
+            <span class="section-label">حالة جديدة</span>
+
+            <h1>ارفعي صور الحادث</h1>
+
+            <p>
+                أضيفي صورًا واضحة من زوايا مختلفة.
+                يفضل تصوير الأمام والخلف والجانبين.
+            </p>
+        </div>
+
+        <form
+            class="upload-card"
+            action="{{ url_for('analyze') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            id="accidentForm"
+        >
+            <label
+                class="drop-zone"
+                for="accidentImages"
+                id="dropZone"
+            >
+                <input
+                    type="file"
+                    id="accidentImages"
+                    name="accident_images"
+                    accept=".jpg,.jpeg,.png"
+                    multiple
+                    required
+                >
+
+                <div class="upload-symbol">
+                    <span>↑</span>
+                </div>
+
+                <h3>اسحبي الصور هنا أو اضغطي للاختيار</h3>
+
+                <p>
+                    JPG أو PNG — بحد أقصى أربع صور
+                </p>
+
+                <button
+                    type="button"
+                    class="choose-files-button"
+                >
+                    اختيار الصور
+                </button>
+            </label>
+
+            <div
+                class="preview-section hidden"
+                id="previewSection"
+            >
+                <div class="preview-header">
+                    <div>
+                        <h3>الصور المختارة</h3>
+                        <p id="fileCount">0 صور</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="text-button"
+                        id="clearImages"
+                    >
+                        حذف الكل
+                    </button>
+                </div>
+
+                <div
+                    class="preview-grid"
+                    id="previewGrid"
+                ></div>
+            </div>
+
+            <div class="upload-guidelines">
+                <div>
+                    <span>✓</span>
+                    المركبات كاملة وواضحة
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    مناطق الضرر ظاهرة
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    صور لنفس الحادث
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a
+                    href="{{ url_for('index') }}"
+                    class="secondary-button"
+                >
+                    العودة
+                </a>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="analyzeButton"
+                >
+                    <span>بدء التحليل الذكي</span>
+                    <span class="button-arrow">←</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<div class="processing-overlay hidden" id="processingOverlay">
+    <div class="processing-modal">
+        <div class="loader-orbit">
+            <div></div>
+            <span>AI</span>
+        </div>
+
+        <h2>جارٍ تحليل الحادث</h2>
+
+        <p>
+            قد تستغرق العملية بضع لحظات، يرجى عدم إغلاق الصفحة.
+        </p>
+
+        <div class="processing-steps">
+            <div class="processing-step active">
+                <i></i>
+                التحقق من الصور واكتشاف المركبات
+            </div>
+
+            <div class="processing-step">
+                <i></i>
+                تحليل الأدلة البصرية
+            </div>
+
+            <div class="processing-step">
+                <i></i>
+                تطبيق القواعد وإعداد التقرير
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
