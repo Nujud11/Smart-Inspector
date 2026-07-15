@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import gc
 import math
 from functools import lru_cache
 from typing import Any
@@ -9,8 +10,6 @@ from PIL import Image
 from ultralytics import YOLO
 
 
-# COCO vehicle classes:
-# 2 = car, 3 = motorcycle, 5 = bus, 7 = truck
 VEHICLE_CLASS_IDS = [2, 3, 5, 7]
 
 MIN_YOLO_CONFIDENCE = 0.35
@@ -19,9 +18,6 @@ MIN_VALIDATION_AVERAGE = 65.0
 
 @lru_cache(maxsize=1)
 def load_model() -> YOLO:
-    """
-    تحميل نموذج YOLO مرة واحدة فقط.
-    """
     return YOLO("yolov8n.pt")
 
 
@@ -29,17 +25,19 @@ def detect_vehicles(
     image: Image.Image,
     confidence_threshold: float = MIN_YOLO_CONFIDENCE,
 ) -> dict[str, Any]:
-    """
-    تشغيل YOLO على صورة واحدة واكتشاف المركبات.
-    """
 
     image = image.convert("RGB")
+    image.thumbnail((960, 960))
+
     model = load_model()
 
     results = model.predict(
         source=np.array(image),
         conf=confidence_threshold,
         classes=VEHICLE_CLASS_IDS,
+        device="cpu",
+        imgsz=416,
+        save=False,
         verbose=False,
     )
 
@@ -66,9 +64,8 @@ def detect_vehicles(
                 }
             )
 
-    # result.plot() يعيد الصورة بنظام BGR
     annotated_bgr = result.plot()
-    annotated_rgb = annotated_bgr[:, :, ::-1]
+    annotated_rgb = annotated_bgr[:, :, ::-1].copy()
     annotated_image = Image.fromarray(annotated_rgb)
 
     if detections:
@@ -79,6 +76,10 @@ def detect_vehicles(
         )
     else:
         average_confidence = 0.0
+
+    del results
+    del result
+    gc.collect()
 
     return {
         "annotated_image": annotated_image,
@@ -91,13 +92,6 @@ def detect_vehicles(
 def validate_accident_images(
     images: list[Image.Image],
 ) -> dict[str, Any]:
-    """
-    تشغيل YOLO على جميع الصور والتحقق من صلاحيتها قبل إرسالها إلى Gemini.
-
-    شروط النجاح:
-    - وجود مركبتين على الأقل في 75% من الصور.
-    - متوسط الثقة العام لا يقل عن 65%.
-    """
 
     if not images:
         return {
@@ -109,10 +103,13 @@ def validate_accident_images(
             "required_valid_images": 0,
         }
 
-    detection_results = [
-        detect_vehicles(image)
-        for image in images
-    ]
+    detection_results = []
+
+    for image in images:
+        detection_results.append(
+            detect_vehicles(image)
+        )
+        gc.collect()
 
     valid_images = sum(
         result["vehicle_count"] >= 2
