@@ -1,0 +1,16 @@
+.git
+.gitignore
+venv
+.env
+__pycache__
+*.pyc
+.DS_Store
+.vscode
+.idea
+
+static/uploads
+static/results
+outputs
+runs
+
+*.log
