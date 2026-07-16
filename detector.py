@@ -23,7 +23,7 @@ except RuntimeError:
 # COCO vehicle classes: car, motorcycle, bus, truck.
 VEHICLE_CLASS_IDS = [2, 3, 5, 7]
 MIN_YOLO_CONFIDENCE = 0.35
-MIN_VALIDATION_AVERAGE = 65.0
+MIN_VALIDATION_AVERAGE = 55.0
 MAX_INFERENCE_SIDE = 768
 YOLO_IMAGE_SIZE = 320
 
