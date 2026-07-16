@@ -155,7 +155,6 @@ def analyze_accident_images(
         raise ValueError(
             "لم يتم العثور على متغير البيئة GEMINI_API_KEY."
         )
-    
 
     if not images:
         raise ValueError(
