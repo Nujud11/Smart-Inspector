@@ -2,22 +2,35 @@ from __future__ import annotations
 
 import gc
 import math
+import os
 from functools import lru_cache
 from typing import Any
 
 import numpy as np
-from PIL import Image
+import torch
+from PIL import Image, ImageDraw
 from ultralytics import YOLO
 
+# Keep CPU and memory use predictable on small Render instances.
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("MKL_NUM_THREADS", "1")
+torch.set_num_threads(1)
+try:
+    torch.set_num_interop_threads(1)
+except RuntimeError:
+    pass
 
+# COCO vehicle classes: car, motorcycle, bus, truck.
 VEHICLE_CLASS_IDS = [2, 3, 5, 7]
-
 MIN_YOLO_CONFIDENCE = 0.35
 MIN_VALIDATION_AVERAGE = 65.0
+MAX_INFERENCE_SIDE = 768
+YOLO_IMAGE_SIZE = 320
 
 
 @lru_cache(maxsize=1)
 def load_model() -> YOLO:
+    """Load the small YOLO model once per Gunicorn worker."""
     return YOLO("yolov8n.pt")
 
 
@@ -25,24 +38,26 @@ def detect_vehicles(
     image: Image.Image,
     confidence_threshold: float = MIN_YOLO_CONFIDENCE,
 ) -> dict[str, Any]:
+    """Run low-memory CPU inference on one image."""
+    working_image = image.convert("RGB")
+    working_image.thumbnail((MAX_INFERENCE_SIDE, MAX_INFERENCE_SIDE))
+    source_array = np.asarray(working_image)
 
-    image = image.convert("RGB")
-    image.thumbnail((960, 960))
-
-    model = load_model()
-
-    results = model.predict(
-        source=np.array(image),
+    results = load_model().predict(
+        source=source_array,
         conf=confidence_threshold,
         classes=VEHICLE_CLASS_IDS,
         device="cpu",
-        imgsz=416,
+        imgsz=YOLO_IMAGE_SIZE,
+        max_det=10,
         save=False,
         verbose=False,
     )
 
     result = results[0]
     detections: list[dict[str, Any]] = []
+    annotated_image = working_image.copy()
+    drawer = ImageDraw.Draw(annotated_image)
 
     if result.boxes is not None:
         for box in result.boxes:
@@ -64,21 +79,22 @@ def detect_vehicles(
                 }
             )
 
-    annotated_bgr = result.plot()
-    annotated_rgb = annotated_bgr[:, :, ::-1].copy()
-    annotated_image = Image.fromarray(annotated_rgb)
+            # Draw boxes without result.plot(), which consumes extra memory.
+            drawer.rectangle((x1, y1, x2, y2), outline="red", width=3)
+            label = f"{result.names[class_id]} {confidence:.0%}"
+            drawer.text((x1 + 4, max(0, y1 + 4)), label, fill="red")
 
-    if detections:
-        average_confidence = round(
+    average_confidence = (
+        round(
             sum(item["confidence"] for item in detections)
             / len(detections),
             2,
         )
-    else:
-        average_confidence = 0.0
+        if detections
+        else 0.0
+    )
 
-    del results
-    del result
+    del drawer, source_array, results, result, working_image
     gc.collect()
 
     return {
@@ -89,10 +105,8 @@ def detect_vehicles(
     }
 
 
-def validate_accident_images(
-    images: list[Image.Image],
-) -> dict[str, Any]:
-
+def validate_accident_images(images: list[Image.Image]) -> dict[str, Any]:
+    """Validate accident images sequentially to limit peak memory."""
     if not images:
         return {
             "passed": False,
@@ -103,44 +117,30 @@ def validate_accident_images(
             "required_valid_images": 0,
         }
 
-    detection_results = []
-
-    for image in images:
-        detection_results.append(
-            detect_vehicles(image)
-        )
+    detection_results: list[dict[str, Any]] = []
+    for index, image in enumerate(images, start=1):
+        print(f"[analysis] YOLO image {index}/{len(images)}", flush=True)
+        detection_results.append(detect_vehicles(image))
         gc.collect()
 
     valid_images = sum(
-        result["vehicle_count"] >= 2
-        for result in detection_results
+        result["vehicle_count"] >= 2 for result in detection_results
     )
-
-    required_valid_images = max(
-        1,
-        math.ceil(len(images) * 0.75),
-    )
+    required_valid_images = max(1, math.ceil(len(images) * 0.75))
 
     image_confidences = [
         result["average_confidence"]
         for result in detection_results
         if result["vehicle_count"] > 0
     ]
-
     overall_confidence = (
-        round(
-            sum(image_confidences) / len(image_confidences),
-            2,
-        )
+        round(sum(image_confidences) / len(image_confidences), 2)
         if image_confidences
         else 0.0
     )
 
     enough_vehicles = valid_images >= required_valid_images
-    confidence_is_good = (
-        overall_confidence >= MIN_VALIDATION_AVERAGE
-    )
-
+    confidence_is_good = overall_confidence >= MIN_VALIDATION_AVERAGE
     passed = enough_vehicles and confidence_is_good
 
     if not enough_vehicles:
@@ -150,15 +150,11 @@ def validate_accident_images(
         )
     elif not confidence_is_good:
         reason = (
-            f"متوسط ثقة YOLO هو {overall_confidence}%، "
-            f"بينما الحد الأدنى المطلوب "
-            f"{MIN_VALIDATION_AVERAGE}%."
+            f"متوسط ثقة YOLO هو {overall_confidence}%، بينما الحد الأدنى "
+            f"المطلوب {MIN_VALIDATION_AVERAGE}%."
         )
     else:
-        reason = (
-            "اجتازت الصور مرحلة التحقق، "
-            "وأصبحت جاهزة للتحليل المتقدم."
-        )
+        reason = "اجتازت الصور مرحلة التحقق، وأصبحت جاهزة للتحليل المتقدم."
 
     return {
         "passed": passed,

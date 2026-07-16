@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import gc
 import json
+import os
 import uuid
 from pathlib import Path
 from typing import Any
@@ -36,7 +38,7 @@ app = Flask(__name__)
 
 # تستخدمها Flask لرسائل النجاح والخطأ المؤقتة.
 # غيّريها مستقبلًا عند نشر المشروع.
-app.secret_key = "smart-traffic-prototype-secret"
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "smart-traffic-prototype-secret")
 
 # حد إجمالي تقريبي للطلب المرفوع.
 app.config["MAX_CONTENT_LENGTH"] = 25 * 1024 * 1024
@@ -225,14 +227,19 @@ def analyze():
 
     case_id = uuid.uuid4().hex[:10].upper()
 
+    images: list[Image.Image] = []
+
     try:
+        app.logger.info("Analysis started for case %s with %s image(s)", case_id, len(files))
         images, original_image_urls = save_uploaded_images(
             files,
             case_id,
         )
 
         # المرحلة الأولى: التحقق بواسطة YOLO.
+        app.logger.info("YOLO started for case %s", case_id)
         yolo_validation = validate_accident_images(images)
+        app.logger.info("YOLO finished for case %s", case_id)
 
         yolo_images = save_yolo_results(
             yolo_validation["results"],
@@ -253,7 +260,9 @@ def analyze():
             )
 
         # المرحلة الثانية: استخراج الأدلة من Gemini.
+        app.logger.info("Gemini started for case %s", case_id)
         vision_model = analyze_accident_images(images)
+        app.logger.info("Gemini finished for case %s", case_id)
         vision_analysis = vision_model.model_dump()
 
         # المرحلة الثالثة: تطبيق القواعد المحلية.
@@ -298,6 +307,13 @@ def analyze():
             rule=None,
             final_confidence=None,
         )
+    finally:
+        for image in images:
+            try:
+                image.close()
+            except Exception:
+                pass
+        gc.collect()
 
 
 if __name__ == "__main__":

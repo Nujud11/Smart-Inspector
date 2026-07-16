@@ -7,3 +7,11 @@ __pycache__/
 static/uploads/
 static/results/
 outputs/
+
+.vscode/
+.idea/
+
+tmp/
+*.log
+
+runs/

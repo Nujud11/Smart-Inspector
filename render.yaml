@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: smart-inspector
+    runtime: python
+    buildCommand: >-
+      pip install --upgrade pip &&
+      pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision &&
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 1 --timeout 300
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: MKL_NUM_THREADS
+        value: "1"
+      - key: YOLO_CONFIG_DIR
+        value: /tmp/Ultralytics

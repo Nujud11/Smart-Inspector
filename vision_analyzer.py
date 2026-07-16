@@ -126,14 +126,14 @@ def prepare_image(image: Image.Image) -> str:
     image = image.convert("RGB")
 
     # تقليل الحجم مع الحفاظ على نسبة الأبعاد
-    image.thumbnail((1600, 1600))
+    image.thumbnail((1024, 1024))
 
     buffer = io.BytesIO()
 
     image.save(
         buffer,
         format="JPEG",
-        quality=85,
+        quality=72,
         optimize=True,
     )
 
@@ -236,6 +236,8 @@ def analyze_accident_images(
             }
         )
 
+    print("[analysis] Gemini request started", flush=True)
+
     interaction = client.interactions.create(
         model="gemini-3.1-flash-lite",
         input=request_input,
@@ -247,6 +249,8 @@ def analyze_accident_images(
             ),
         },
     )
+
+    print("[analysis] Gemini response received", flush=True)
 
     return AccidentVisionAnalysis.model_validate_json(
         interaction.output_text
