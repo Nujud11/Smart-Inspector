@@ -4,5 +4,4 @@ google-genai==2.11.0
 python-dotenv==1.2.2
 Pillow==12.3.0
 pydantic==2.13.4
-
 ultralytics==8.4.95
