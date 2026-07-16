@@ -153,8 +153,9 @@ def analyze_accident_images(
 
     if not api_key:
         raise ValueError(
-            "لم يتم العثور على GEMINI_API_KEY داخل ملف .env"
+            "لم يتم العثور على متغير البيئة GEMINI_API_KEY."
         )
+    
 
     if not images:
         raise ValueError(
