@@ -255,6 +255,56 @@ http://127.0.0.1:5000
 
 ---
 
+## 📷 Screenshots
+
+### 🏠 Landing Page
+
+<img width="1470" height="956" alt="Smart Traffic Investigator landing page" src="https://github.com/user-attachments/assets/5e2d4ef6-c3e9-410c-9a0e-641483815f0e" />
+
+---
+
+### ⚙️ How It Works
+
+<img width="1470" height="956" alt="System workflow and analysis layers" src="https://github.com/user-attachments/assets/10e0d9fe-ceb6-4199-8426-fa5d08d7c65d" />
+
+---
+
+### 📤 Accident Image Upload
+
+<img width="1470" height="956" alt="Accident image upload page" src="https://github.com/user-attachments/assets/9fd47b67-ca27-4051-afc4-a1221330ab16" />
+
+---
+
+### ⏳ Analysis Process
+
+<img width="1470" height="956" alt="AI accident analysis process" src="https://github.com/user-attachments/assets/53372e56-d0b3-4498-9825-a104135b6392" />
+
+---
+
+### 📊 Report Summary
+
+<img width="1470" height="956" alt="Traffic accident report summary" src="https://github.com/user-attachments/assets/1e9b1db0-fa40-457f-91de-4cee0cc5fd1c" />
+
+---
+
+### 🔎 Visual Evidence
+
+<img width="1470" height="956" alt="Extracted visual evidence and vehicle details" src="https://github.com/user-attachments/assets/e40d1f4f-60dd-41ad-a8c6-2bae43333b28" />
+
+---
+
+### 🧩 Technical Analysis
+
+<img width="1470" height="956" alt="YOLO, Gemini, rule engine, and system architecture details" src="https://github.com/user-attachments/assets/40527bc0-96b3-40e4-9b43-5d6087e0c400" />
+
+---
+
+### 🖨️ Printable Report
+
+<img width="1470" height="956" alt="Printable traffic accident investigation report" src="https://github.com/user-attachments/assets/e7abae0e-0ee5-469e-b6aa-7805acf7dadf" />
+
+---
+
 ## 🌐 Live Demo
 
 👉 https://smart-inspector-production.up.railway.app/
