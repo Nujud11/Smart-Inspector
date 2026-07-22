@@ -206,13 +206,6 @@ def pricing():
 
     return render_template("pricing.html")
 
-@app.get("/pricing")
-def pricing():
-    """صفحة الباقات."""
-
-    return render_template("pricing.html")
-
-
 @app.get("/team")
 def team():
     """صفحة فريق المشروع."""
