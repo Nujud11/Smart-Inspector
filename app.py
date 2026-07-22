@@ -206,6 +206,94 @@ def pricing():
 
     return render_template("pricing.html")
 
+@app.get("/pricing")
+def pricing():
+    """صفحة الباقات."""
+
+    return render_template("pricing.html")
+
+
+@app.get("/team")
+def team():
+    """صفحة فريق المشروع."""
+
+    students = [
+        {
+            "name": "اسم الطالب الأول",
+            "city": "المدينة",
+            "school": "اسم المدرسة الثانوية",
+            "bio": "",
+            "email": "",
+        },
+        {
+            "name": "اسم الطالب الثاني",
+            "city": "المدينة",
+            "school": "اسم المدرسة الثانوية",
+            "bio": "",
+            "email": "",
+        },
+        {
+            "name": "اسم الطالب الثالث",
+            "city": "المدينة",
+            "school": "اسم المدرسة الثانوية",
+            "bio": "",
+            "email": "",
+        },
+        {
+            "name": "اسم الطالب الرابع",
+            "city": "المدينة",
+            "school": "اسم المدرسة الثانوية",
+            "bio": "",
+            "email": "",
+        },
+        {
+            "name": "اسم الطالب الخامس",
+            "city": "المدينة",
+            "school": "اسم المدرسة الثانوية",
+            "bio": "",
+            "email": "",
+        },
+        {
+            "name": "اسم الطالب السادس",
+            "city": "المدينة",
+            "school": "اسم المدرسة الثانوية",
+            "bio": "",
+            "email": "",
+        },
+    ]
+
+    supervisors = [
+        {
+            "name": "د. مرتضى",
+            "role": "مشرف مسار ميثاق الخوارزميات",
+            "city": "",
+            "organization": "برنامج مدن المستقبل 2026",
+            "bio": "",
+            "email": "",
+        },
+        {
+            "name": "نجود العبيد",
+            "role": "المطور التقني للمشروع",
+            "city": "الأحساء",
+            "organization": "المعاين الذكي",
+            "bio": "",
+            "email": "",
+        },
+    ]
+
+    return render_template(
+        "team.html",
+        students=students,
+        supervisors=supervisors,
+    )
+
+
+@app.get("/new-case")
+def new_case():
+    """صفحة رفع الصور."""
+
+    return render_template("upload.html")
+
 
 @app.get("/new-case")
 def new_case():

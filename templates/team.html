@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+
+{% block title %}
+فريق المشروع | المعاين الذكي
+{% endblock %}
+
+{% block content %}
+
+<section class="team-hero">
+    <div class="container team-hero-grid">
+
+        <div class="team-hero-content">
+            <span class="section-label">
+                فريق المشروع
+            </span>
+
+            <h1>
+                فكرة طلابية طُوّرت
+                <span>بدعم وإشراف متخصص.</span>
+            </h1>
+
+            <p>
+                طُوّر مشروع المعاين الذكي ضمن مسار
+                <strong>ميثاق الخوارزميات</strong>
+                في برنامج مدن المستقبل 2026، برعاية جمعية بصمات
+                بالأحساء، وبمشاركة مجموعة من طلاب المرحلة الثانوية.
+            </p>
+
+            <div class="team-summary">
+                <div>
+                    <strong>6</strong>
+                    <span>طلاب مشاركين</span>
+                </div>
+
+                <div>
+                    <strong>2026</strong>
+                    <span>برنامج مدن المستقبل</span>
+                </div>
+
+                <div>
+                    <strong>1</strong>
+                    <span>مشروع تقني مشترك</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-program-card">
+            <span class="program-card-badge">
+                مسار المشروع
+            </span>
+
+            <div class="program-card-icon">
+                AI
+            </div>
+
+            <h2>
+                ميثاق الخوارزميات
+            </h2>
+
+            <p>
+                مسار يركز على تطوير حلول ذكاء اصطناعي مسؤولة، واضحة،
+                وقابلة للتفسير بما يخدم الإنسان والمدن المستقبلية.
+            </p>
+
+            <div class="program-details">
+                <div>
+                    <span>البرنامج</span>
+                    <strong>مدن المستقبل 2026</strong>
+                </div>
+
+                <div>
+                    <span>برعاية</span>
+                    <strong>جمعية بصمات بالأحساء</strong>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="team-section students-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">
+                الطلاب المشاركون
+            </span>
+
+            <h2>
+                المشاركون في تطوير الفكرة وعرضها
+            </h2>
+
+            <p>
+                عمل الطلاب على فهم المشكلة، وتطوير تصور الحل، والمشاركة
+                في إعداد وعرض مشروع المعاين الذكي.
+            </p>
+        </div>
+
+        <div class="students-grid">
+
+            {% for student in students %}
+
+            <article class="person-card student-card">
+
+                <div class="person-card-top">
+                    <div class="person-avatar">
+                        {{ student.name[:1] }}
+                    </div>
+
+                    <span class="person-category">
+                        طالب مشارك
+                    </span>
+                </div>
+
+                <div class="person-main-info">
+                    <h3>
+                        {{ student.name }}
+                    </h3>
+
+                    <span class="person-role">
+                        مشارك في تطوير الفكرة وعرض المشروع
+                    </span>
+                </div>
+
+                <div class="person-details">
+
+                    <div class="person-detail">
+                        <span class="detail-icon">⌖</span>
+
+                        <div>
+                            <small>المدينة</small>
+                            <strong>{{ student.city }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="person-detail">
+                        <span class="detail-icon">◇</span>
+
+                        <div>
+                            <small>المدرسة الثانوية</small>
+                            <strong>{{ student.school }}</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+                {% if student.bio %}
+                <p class="person-bio">
+                    {{ student.bio }}
+                </p>
+                {% endif %}
+
+                {% if student.email %}
+                <a
+                    href="mailto:{{ student.email }}"
+                    class="person-email"
+                >
+                    <span>✉</span>
+                    {{ student.email }}
+                </a>
+                {% endif %}
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="team-section supervisors-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">
+                الإشراف والتطوير
+            </span>
+
+            <h2>
+                من ساعد الطلاب وأشرف على تنفيذ المشروع
+            </h2>
+
+            <p>
+                ساهم فريق الإشراف والتطوير في توجيه الطلاب وتحويل الفكرة
+                إلى نموذج تقني قابل للتجربة والعرض.
+            </p>
+        </div>
+
+        <div class="supervisors-grid">
+
+            {% for supervisor in supervisors %}
+
+            <article class="person-card supervisor-card">
+
+                <div class="person-card-top">
+                    <div class="person-avatar supervisor-avatar">
+                        {{ supervisor.name[:1] }}
+                    </div>
+
+                    <span class="person-category supervisor-category">
+                        {{ supervisor.role }}
+                    </span>
+                </div>
+
+                <div class="person-main-info">
+                    <h3>
+                        {{ supervisor.name }}
+                    </h3>
+
+                    <span class="person-role">
+                        {{ supervisor.role }}
+                    </span>
+                </div>
+
+                <div class="person-details">
+
+                    {% if supervisor.city %}
+                    <div class="person-detail">
+                        <span class="detail-icon">⌖</span>
+
+                        <div>
+                            <small>المدينة</small>
+                            <strong>{{ supervisor.city }}</strong>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if supervisor.organization %}
+                    <div class="person-detail">
+                        <span class="detail-icon">◇</span>
+
+                        <div>
+                            <small>الجهة</small>
+                            <strong>{{ supervisor.organization }}</strong>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                {% if supervisor.bio %}
+                <p class="person-bio">
+                    {{ supervisor.bio }}
+                </p>
+                {% endif %}
+
+                {% if supervisor.email %}
+                <a
+                    href="mailto:{{ supervisor.email }}"
+                    class="person-email"
+                >
+                    <span>✉</span>
+                    {{ supervisor.email }}
+                </a>
+                {% endif %}
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="team-credit-section">
+    <div class="container">
+
+        <div class="team-credit-card">
+
+            <div>
+                <span>مشروع مشارك ضمن</span>
+
+                <h2>
+                    برنامج مدن المستقبل 2026
+                </h2>
+
+                <p>
+                    مسار ميثاق الخوارزميات، برعاية جمعية بصمات بالأحساء.
+                </p>
+            </div>
+
+            <a
+                href="{{ url_for('about') }}"
+                class="light-button large"
+            >
+                تعرف على المشروع
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
