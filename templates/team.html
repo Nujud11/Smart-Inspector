@@ -1,265 +1,132 @@
 {% extends "base.html" %}
 
 {% block title %}
-فريق المشروع | المعاين الذكي
+تواصل معنا | المعاين الذكي
 {% endblock %}
 
 {% block content %}
 
-<section class="team-hero">
-    <div class="container team-hero-grid">
+<section class="contact-hero">
+    <div class="container contact-hero-grid">
 
-        <div class="team-hero-content">
+        <div class="contact-hero-content">
             <span class="section-label">
-                فريق المشروع
+                تواصل معنا
             </span>
 
             <h1>
-                فكرة طلابية طُوّرت
-                <span>بدعم وإشراف متخصص.</span>
+                رأيك يساعدنا على تطوير
+                <span>المعاين الذكي.</span>
             </h1>
 
             <p>
-                طُوّر مشروع المعاين الذكي ضمن مسار
-                <strong>ميثاق الخوارزميات</strong>
-                في برنامج مدن المستقبل 2026، برعاية جمعية بصمات
-                بالأحساء، وبمشاركة مجموعة من طلاب المرحلة الثانوية.
+                نسعد باستقبال استفساراتكم واقتراحاتكم وملاحظاتكم،
+                سواء كانت حول تجربة المنصة، أو نتائج تحليل الحوادث،
+                أو فرص التعاون وتطوير المشروع.
             </p>
 
-            <div class="team-summary">
-                <div>
-                    <strong>6</strong>
-                    <span>طلاب مشاركين</span>
-                </div>
+            <div class="contact-hero-actions">
+                <a
+                    href="#contact-form-section"
+                    class="primary-button large"
+                >
+                    أرسل رسالتك
+                </a>
 
-                <div>
-                    <strong>2026</strong>
-                    <span>برنامج مدن المستقبل</span>
-                </div>
-
-                <div>
-                    <strong>1</strong>
-                    <span>مشروع تقني مشترك</span>
-                </div>
+                <a
+                    href="#project-team"
+                    class="secondary-button large"
+                >
+                    تعرف على الفريق
+                </a>
             </div>
         </div>
 
-        <div class="team-program-card">
-            <span class="program-card-badge">
-                مسار المشروع
-            </span>
 
-            <div class="program-card-icon">
-                AI
+        <div class="contact-hero-card">
+
+            <div class="contact-hero-card-icon">
+                ✉
             </div>
 
+            <span class="contact-card-label">
+                نرحب بتواصلك
+            </span>
+
             <h2>
-                ميثاق الخوارزميات
+                كيف يمكننا مساعدتك؟
             </h2>
 
             <p>
-                مسار يركز على تطوير حلول ذكاء اصطناعي مسؤولة، واضحة،
-                وقابلة للتفسير بما يخدم الإنسان والمدن المستقبلية.
+                اختر نوع التواصل، وأرسل تفاصيل رسالتك،
+                وسيتم توجيهها مباشرة إلى فريق المشروع.
             </p>
 
-            <div class="program-details">
-                <div>
-                    <span>البرنامج</span>
-                    <strong>مدن المستقبل 2026</strong>
-                </div>
+            <div class="contact-response-note">
+                <span class="response-indicator"></span>
 
                 <div>
-                    <span>برعاية</span>
-                    <strong>جمعية بصمات بالأحساء</strong>
+                    <strong>رسالتك تصل إلى فريق المشروع</strong>
+                    <small>
+                        ويمكن التواصل معك من خلال البريد الذي تدخله.
+                    </small>
                 </div>
             </div>
+
         </div>
 
     </div>
 </section>
 
 
-<section class="team-section students-section">
+<section class="contact-options-section">
     <div class="container">
 
-        <div class="section-heading centered">
-            <span class="section-label">
-                الطلاب المشاركون
-            </span>
+        <div class="contact-options-grid">
 
-            <h2>
-                المشاركون في تطوير الفكرة وعرضها
-            </h2>
-
-            <p>
-                عمل الطلاب على فهم المشكلة، وتطوير تصور الحل، والمشاركة
-                في إعداد وعرض مشروع المعاين الذكي.
-            </p>
-        </div>
-
-        <div class="students-grid">
-
-            {% for student in students %}
-
-            <article class="person-card student-card">
-
-                <div class="person-card-top">
-                    <div class="person-avatar">
-                        {{ student.name[:1] }}
-                    </div>
-
-                    <span class="person-category">
-                        طالب مشارك
-                    </span>
+            <article class="contact-option-card">
+                <div class="contact-option-icon">
+                    ?
                 </div>
 
-                <div class="person-main-info">
-                    <h3>
-                        {{ student.name }}
-                    </h3>
+                <div>
+                    <h3>استفسار</h3>
 
-                    <span class="person-role">
-                        مشارك في تطوير الفكرة وعرض المشروع
-                    </span>
+                    <p>
+                        اسأل عن آلية عمل المنصة أو طريقة تحليل الحادث.
+                    </p>
                 </div>
-
-                <div class="person-details">
-
-                    <div class="person-detail">
-                        <span class="detail-icon">⌖</span>
-
-                        <div>
-                            <small>المدينة</small>
-                            <strong>{{ student.city }}</strong>
-                        </div>
-                    </div>
-
-                    <div class="person-detail">
-                        <span class="detail-icon">◇</span>
-
-                        <div>
-                            <small>المدرسة الثانوية</small>
-                            <strong>{{ student.school }}</strong>
-                        </div>
-                    </div>
-
-                </div>
-
-                {% if student.bio %}
-                <p class="person-bio">
-                    {{ student.bio }}
-                </p>
-                {% endif %}
-
-                {% if student.email %}
-                <a
-                    href="mailto:{{ student.email }}"
-                    class="person-email"
-                >
-                    <span>✉</span>
-                    {{ student.email }}
-                </a>
-                {% endif %}
-
             </article>
 
-            {% endfor %}
 
-        </div>
-
-    </div>
-</section>
-
-
-<section class="team-section supervisors-section">
-    <div class="container">
-
-        <div class="section-heading centered">
-            <span class="section-label">
-                الإشراف والتطوير
-            </span>
-
-            <h2>
-                من ساعد الطلاب وأشرف على تنفيذ المشروع
-            </h2>
-
-            <p>
-                ساهم فريق الإشراف والتطوير في توجيه الطلاب وتحويل الفكرة
-                إلى نموذج تقني قابل للتجربة والعرض.
-            </p>
-        </div>
-
-        <div class="supervisors-grid">
-
-            {% for supervisor in supervisors %}
-
-            <article class="person-card supervisor-card">
-
-                <div class="person-card-top">
-                    <div class="person-avatar supervisor-avatar">
-                        {{ supervisor.name[:1] }}
-                    </div>
-
-                    <span class="person-category supervisor-category">
-                        {{ supervisor.role }}
-                    </span>
+            <article class="contact-option-card">
+                <div class="contact-option-icon">
+                    ✦
                 </div>
 
-                <div class="person-main-info">
-                    <h3>
-                        {{ supervisor.name }}
-                    </h3>
+                <div>
+                    <h3>اقتراح تطوير</h3>
 
-                    <span class="person-role">
-                        {{ supervisor.role }}
-                    </span>
+                    <p>
+                        شاركنا فكرة أو ميزة تساعد في تحسين تجربة المنصة.
+                    </p>
                 </div>
-
-                <div class="person-details">
-
-                    {% if supervisor.city %}
-                    <div class="person-detail">
-                        <span class="detail-icon">⌖</span>
-
-                        <div>
-                            <small>المدينة</small>
-                            <strong>{{ supervisor.city }}</strong>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    {% if supervisor.organization %}
-                    <div class="person-detail">
-                        <span class="detail-icon">◇</span>
-
-                        <div>
-                            <small>الجهة</small>
-                            <strong>{{ supervisor.organization }}</strong>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                </div>
-
-                {% if supervisor.bio %}
-                <p class="person-bio">
-                    {{ supervisor.bio }}
-                </p>
-                {% endif %}
-
-                {% if supervisor.email %}
-                <a
-                    href="mailto:{{ supervisor.email }}"
-                    class="person-email"
-                >
-                    <span>✉</span>
-                    {{ supervisor.email }}
-                </a>
-                {% endif %}
-
             </article>
 
-            {% endfor %}
+
+            <article class="contact-option-card">
+                <div class="contact-option-icon">
+                    !
+                </div>
+
+                <div>
+                    <h3>الإبلاغ عن مشكلة</h3>
+
+                    <p>
+                        أخبرنا عن أي مشكلة تقنية واجهتك أثناء الاستخدام.
+                    </p>
+                </div>
+            </article>
 
         </div>
 
@@ -267,33 +134,664 @@
 </section>
 
 
-<section class="team-credit-section">
-    <div class="container">
+<section
+    class="contact-main-section"
+    id="contact-form-section"
+>
+    <div class="container contact-main-grid">
 
-        <div class="team-credit-card">
+        <aside
+            class="contact-project-panel"
+            id="project-team"
+        >
 
-            <div>
-                <span>مشروع مشارك ضمن</span>
+            <div class="contact-panel-heading">
+                <span class="section-label">
+                    عن المشروع
+                </span>
 
                 <h2>
-                    برنامج مدن المستقبل 2026
+                    مشروع طلابي لتطوير تجربة معاينة الحوادث
                 </h2>
 
                 <p>
-                    مسار ميثاق الخوارزميات، برعاية جمعية بصمات بالأحساء.
+                    طُوّر المعاين الذكي ضمن برنامج مدن المستقبل 2026،
+                    بهدف تقديم نموذج تجريبي يوظف الذكاء الاصطناعي
+                    في تحليل صور الحوادث وإنتاج تقرير أولي.
+                </p>
+            </div>
+
+
+            <div class="contact-project-info">
+
+                <article class="contact-info-item">
+                    <span class="contact-info-icon">
+                        AI
+                    </span>
+
+                    <div>
+                        <small>المسار</small>
+                        <strong>ميثاق الخوارزميات</strong>
+                    </div>
+                </article>
+
+
+                <article class="contact-info-item">
+                    <span class="contact-info-icon">
+                        26
+                    </span>
+
+                    <div>
+                        <small>البرنامج</small>
+                        <strong>مدن المستقبل 2026</strong>
+                    </div>
+                </article>
+
+
+                <article class="contact-info-item">
+                    <span class="contact-info-icon">
+                        ◇
+                    </span>
+
+                    <div>
+                        <small>برعاية</small>
+                        <strong>جمعية بصمات بالأحساء</strong>
+                    </div>
+                </article>
+
+            </div>
+
+
+            {% if students %}
+            <div class="contact-team-group">
+
+                <div class="contact-team-group-heading">
+                    <h3>الطلاب المشاركون</h3>
+
+                    <span>
+                        {{ students|length }} مشاركين
+                    </span>
+                </div>
+
+                <div class="contact-team-list">
+
+                    {% for student in students %}
+
+                    <article class="contact-team-member">
+
+                        <div class="contact-member-avatar">
+                            {{ student.name[:1] }}
+                        </div>
+
+                        <div class="contact-member-info">
+                            <strong>
+                                {{ student.name }}
+                            </strong>
+
+                            <span>
+                                طالب مشارك
+
+                                {% if student.city %}
+                                · {{ student.city }}
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        {% if student.email %}
+                        <a
+                            href="mailto:{{ student.email }}"
+                            class="contact-member-email"
+                            aria-label="مراسلة {{ student.name }}"
+                            title="مراسلة {{ student.name }}"
+                        >
+                            ✉
+                        </a>
+                        {% endif %}
+
+                    </article>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            {% endif %}
+
+
+            {% if supervisors %}
+            <div class="contact-team-group contact-supervisors-group">
+
+                <div class="contact-team-group-heading">
+                    <h3>الإشراف والتطوير</h3>
+                </div>
+
+                <div class="contact-team-list">
+
+                    {% for supervisor in supervisors %}
+
+                    <article class="contact-team-member supervisor-member">
+
+                        <div class="contact-member-avatar supervisor-member-avatar">
+                            {{ supervisor.name[:1] }}
+                        </div>
+
+                        <div class="contact-member-info">
+                            <strong>
+                                {{ supervisor.name }}
+                            </strong>
+
+                            <span>
+                                {{ supervisor.role }}
+                            </span>
+                        </div>
+
+                        {% if supervisor.email %}
+                        <a
+                            href="mailto:{{ supervisor.email }}"
+                            class="contact-member-email"
+                            aria-label="مراسلة {{ supervisor.name }}"
+                            title="مراسلة {{ supervisor.name }}"
+                        >
+                            ✉
+                        </a>
+                        {% endif %}
+
+                    </article>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            {% endif %}
+
+        </aside>
+
+
+        <section class="contact-form-panel">
+
+            <div class="contact-form-heading">
+                <span class="section-label">
+                    أرسل رسالتك
+                </span>
+
+                <h2>
+                    كيف يمكننا مساعدتك؟
+                </h2>
+
+                <p>
+                    أدخل بياناتك وتفاصيل رسالتك في النموذج التالي.
+                </p>
+            </div>
+
+
+            <form
+                class="contact-form"
+                id="contact-form"
+                novalidate
+            >
+
+                <div class="contact-form-row">
+
+                    <div class="contact-form-field">
+                        <label for="contact-name">
+                            الاسم
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            id="contact-name"
+                            name="senderName"
+                            type="text"
+                            maxlength="80"
+                            placeholder="اكتب اسمك"
+                            autocomplete="name"
+                            required
+                        >
+
+                        <small
+                            class="contact-field-error"
+                            data-error-for="contact-name"
+                        ></small>
+                    </div>
+
+
+                    <div class="contact-form-field">
+                        <label for="contact-email">
+                            البريد الإلكتروني
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            id="contact-email"
+                            name="senderEmail"
+                            type="email"
+                            maxlength="150"
+                            placeholder="name@example.com"
+                            autocomplete="email"
+                            dir="ltr"
+                            required
+                        >
+
+                        <small
+                            class="contact-field-error"
+                            data-error-for="contact-email"
+                        ></small>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-form-field">
+                    <label for="contact-type">
+                        نوع التواصل
+                        <span>*</span>
+                    </label>
+
+                    <select
+                        id="contact-type"
+                        name="contactType"
+                        required
+                    >
+                        <option value="">
+                            اختر نوع التواصل
+                        </option>
+
+                        <option value="استفسار">
+                            استفسار
+                        </option>
+
+                        <option value="اقتراح">
+                            اقتراح
+                        </option>
+
+                        <option value="الإبلاغ عن مشكلة">
+                            الإبلاغ عن مشكلة
+                        </option>
+
+                        <option value="تعاون">
+                            فرصة تعاون
+                        </option>
+
+                        <option value="ملاحظة على نتائج التحليل">
+                            ملاحظة على نتائج التحليل
+                        </option>
+
+                        <option value="أخرى">
+                            أخرى
+                        </option>
+                    </select>
+
+                    <small
+                        class="contact-field-error"
+                        data-error-for="contact-type"
+                    ></small>
+                </div>
+
+
+                <div class="contact-form-field">
+                    <label for="contact-subject">
+                        عنوان الرسالة
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        id="contact-subject"
+                        name="subject"
+                        type="text"
+                        maxlength="100"
+                        placeholder="اكتب عنوانًا مختصرًا للرسالة"
+                        required
+                    >
+
+                    <small
+                        class="contact-field-error"
+                        data-error-for="contact-subject"
+                    ></small>
+                </div>
+
+
+                <div class="contact-form-field">
+                    <div class="contact-field-heading">
+                        <label for="contact-message">
+                            الرسالة
+                            <span>*</span>
+                        </label>
+
+                        <span id="contact-character-count">
+                            0 / 1500
+                        </span>
+                    </div>
+
+                    <textarea
+                        id="contact-message"
+                        name="message"
+                        rows="8"
+                        maxlength="1500"
+                        placeholder="اكتب تفاصيل رسالتك هنا..."
+                        required
+                    ></textarea>
+
+                    <small
+                        class="contact-field-error"
+                        data-error-for="contact-message"
+                    ></small>
+                </div>
+
+
+                <div
+                    class="contact-form-status"
+                    id="contact-form-status"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <button
+                    class="primary-button large contact-submit-button"
+                    id="contact-submit-button"
+                    type="submit"
+                >
+                    <span class="contact-submit-text">
+                        إرسال الرسالة
+                    </span>
+
+                    <span
+                        class="contact-submit-loader"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+
+
+                <p class="contact-form-note">
+                    لن يتم استخدام بريدك الإلكتروني إلا للتواصل معك
+                    بخصوص هذه الرسالة.
+                </p>
+
+            </form>
+
+        </section>
+
+    </div>
+</section>
+
+
+<section class="contact-final-section">
+    <div class="container">
+
+        <div class="contact-final-card">
+
+            <div>
+                <span class="section-label">
+                    اكتشف المنصة
+                </span>
+
+                <h2>
+                    جرّب تحليل حادث باستخدام المعاين الذكي
+                </h2>
+
+                <p>
+                    ارفع صور الحادث واحصل على تقرير أولي يوضح
+                    المركبات والأضرار والسيناريو المحتمل.
                 </p>
             </div>
 
             <a
-                href="{{ url_for('about') }}"
+                href="{{ url_for('upload') }}"
                 class="light-button large"
             >
-                تعرف على المشروع
+                تسجيل حادث
             </a>
 
         </div>
 
     </div>
 </section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const EMAILJS_CONFIG = {
+        serviceId: "service_vp4csdl",
+        templateId: "template_0cdac4f",
+        publicKey: "XMT9dYpbI--L4GtAR"
+    };
+
+    if (typeof emailjs === "undefined") {
+        console.error("تعذر تحميل مكتبة EmailJS.");
+        return;
+    }
+
+    emailjs.init({
+        publicKey: EMAILJS_CONFIG.publicKey
+    });
+
+    const form = document.getElementById("contact-form");
+    const messageInput = document.getElementById("contact-message");
+    const characterCount = document.getElementById(
+        "contact-character-count"
+    );
+    const submitButton = document.getElementById(
+        "contact-submit-button"
+    );
+
+    if (messageInput && characterCount) {
+        messageInput.addEventListener("input", function () {
+            characterCount.textContent =
+                `${messageInput.value.length} / 1500`;
+        });
+    }
+
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        clearFormErrors();
+
+        const senderName =
+            document.getElementById("contact-name").value.trim();
+
+        const senderEmail =
+            document.getElementById("contact-email").value.trim();
+
+        const contactType =
+            document.getElementById("contact-type").value.trim();
+
+        const subject =
+            document.getElementById("contact-subject").value.trim();
+
+        const message =
+            document.getElementById("contact-message").value.trim();
+
+        let isValid = true;
+
+        if (senderName.length < 2) {
+            showFieldError(
+                "contact-name",
+                "يرجى كتابة اسم صحيح."
+            );
+
+            isValid = false;
+        }
+
+        if (!isValidEmail(senderEmail)) {
+            showFieldError(
+                "contact-email",
+                "يرجى إدخال بريد إلكتروني صحيح."
+            );
+
+            isValid = false;
+        }
+
+        if (!contactType) {
+            showFieldError(
+                "contact-type",
+                "يرجى اختيار نوع التواصل."
+            );
+
+            isValid = false;
+        }
+
+        if (subject.length < 3) {
+            showFieldError(
+                "contact-subject",
+                "يرجى كتابة عنوان واضح للرسالة."
+            );
+
+            isValid = false;
+        }
+
+        if (message.length < 10) {
+            showFieldError(
+                "contact-message",
+                "يرجى كتابة تفاصيل أكثر للرسالة."
+            );
+
+            isValid = false;
+        }
+
+        if (!isValid) {
+            setFormStatus(
+                "يرجى مراجعة الحقول المطلوبة.",
+                "error"
+            );
+
+            return;
+        }
+
+        setSubmitLoading(true);
+
+        setFormStatus(
+            "جاري إرسال رسالتك...",
+            "loading"
+        );
+
+        try {
+            await emailjs.send(
+                EMAILJS_CONFIG.serviceId,
+                EMAILJS_CONFIG.templateId,
+                {
+                    contact_type: contactType,
+                    sender_name: senderName,
+                    sender_email: senderEmail,
+                    subject: subject,
+                    message: message,
+                    sent_at: new Date().toLocaleString(
+                        "ar-SA",
+                        {
+                            dateStyle: "full",
+                            timeStyle: "short"
+                        }
+                    )
+                }
+            );
+
+            form.reset();
+
+            if (characterCount) {
+                characterCount.textContent = "0 / 1500";
+            }
+
+            setFormStatus(
+                "تم إرسال رسالتك بنجاح، شكرًا لتواصلك معنا.",
+                "success"
+            );
+        } catch (error) {
+            console.error("EmailJS error:", error);
+
+            setFormStatus(
+                "تعذر إرسال الرسالة حاليًا. يرجى المحاولة مرة أخرى.",
+                "error"
+            );
+        } finally {
+            setSubmitLoading(false);
+        }
+    });
+
+    function showFieldError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+
+        const errorElement = document.querySelector(
+            `[data-error-for="${fieldId}"]`
+        );
+
+        if (field) {
+            field.classList.add("contact-field-invalid");
+        }
+
+        if (errorElement) {
+            errorElement.textContent = message;
+        }
+    }
+
+    function clearFormErrors() {
+        document
+            .querySelectorAll(".contact-field-invalid")
+            .forEach(function (element) {
+                element.classList.remove(
+                    "contact-field-invalid"
+                );
+            });
+
+        document
+            .querySelectorAll(".contact-field-error")
+            .forEach(function (element) {
+                element.textContent = "";
+            });
+
+        setFormStatus("", "");
+    }
+
+    function setFormStatus(message, type) {
+        const statusElement = document.getElementById(
+            "contact-form-status"
+        );
+
+        if (!statusElement) {
+            return;
+        }
+
+        statusElement.textContent = message;
+        statusElement.className = "contact-form-status";
+
+        if (type) {
+            statusElement.classList.add(
+                `contact-form-status--${type}`
+            );
+        }
+    }
+
+    function setSubmitLoading(isLoading) {
+        if (!submitButton) {
+            return;
+        }
+
+        submitButton.disabled = isLoading;
+        submitButton.classList.toggle(
+            "is-loading",
+            isLoading
+        );
+
+        const text = submitButton.querySelector(
+            ".contact-submit-text"
+        );
+
+        if (text) {
+            text.textContent = isLoading
+                ? "جاري الإرسال..."
+                : "إرسال الرسالة";
+        }
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+});
+</script>
 
 {% endblock %}
