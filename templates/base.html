@@ -8,6 +8,24 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <script>
+        (() => {
+            const savedTheme = localStorage.getItem(
+                "smart-inspector-theme"
+            );
+
+            const systemDark = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+            ).matches;
+
+            const theme = savedTheme || (
+                systemDark ? "dark" : "light"
+            );
+
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
     <title>
         {% block title %}المحقق المروري الذكي{% endblock %}
     </title>
@@ -75,8 +93,14 @@
                     class="theme-toggle"
                     id="themeToggle"
                     aria-label="تغيير وضع الألوان"
+                    aria-pressed="false"
                 >
-                    <span class="theme-toggle-icon">☀</span>
+                    <span class="theme-toggle-track">
+                        <span class="theme-toggle-thumb">
+                            <span class="theme-icon theme-icon-sun">☀</span>
+                            <span class="theme-icon theme-icon-moon">☾</span>
+                        </span>
+                    </span>
                 </button>
 
                 <a

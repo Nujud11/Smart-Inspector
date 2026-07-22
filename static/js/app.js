@@ -1,8 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
+    initializeTheme();
     initializeUploadPage();
     initializeReportTabs();
 });
 
+function initializeTheme() {
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+
+    if (!toggle) {
+        return;
+    }
+
+    function applyTheme(theme) {
+        root.dataset.theme = theme;
+
+        toggle.setAttribute(
+            "aria-pressed",
+            theme === "dark" ? "true" : "false"
+        );
+
+        toggle.setAttribute(
+            "aria-label",
+            theme === "dark"
+                ? "تفعيل الوضع الفاتح"
+                : "تفعيل الوضع الداكن"
+        );
+
+        localStorage.setItem(
+            "smart-inspector-theme",
+            theme
+        );
+    }
+
+    applyTheme(root.dataset.theme || "light");
+
+    toggle.addEventListener("click", () => {
+        const nextTheme =
+            root.dataset.theme === "dark"
+                ? "light"
+                : "dark";
+
+        applyTheme(nextTheme);
+    });
+}
 
 function initializeUploadPage() {
     const input = document.getElementById("accidentImages");
