@@ -288,13 +288,6 @@ def new_case():
     return render_template("upload.html")
 
 
-@app.get("/new-case")
-def new_case():
-    """صفحة رفع الصور."""
-
-    return render_template("upload.html")
-
-
 @app.post("/analyze")
 def analyze():
     """استقبال الصور وتشغيل خط المعالجة كاملًا."""
