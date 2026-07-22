@@ -40,19 +40,44 @@
     <header class="site-header">
         <div class="container navigation">
             <a href="{{ url_for('index') }}" class="brand">
-                <span class="brand-icon">🚘</span>
+                <span class="brand-logo">
+                    <img
+                        src="{{ url_for('static', filename='images/smart-inspector-logo.png') }}"
+                        alt="شعار المعاين الذكي"
+                    >
+                </span>
 
                 <span class="brand-text">
-                    <strong>المحقق المروري الذكي</strong>
-                    <small>Smart Traffic Investigator</small>
+                    <strong>المعاين الذكي</strong>
+                    <small>Smart Accident Inspector</small>
                 </span>
             </a>
 
             <nav class="nav-links">
-                <a href="{{ url_for('index') }}">الرئيسية</a>
-                <a href="{{ url_for('index') }}#how-it-works">
-                    كيف يعمل؟
+                <a href="{{ url_for('index') }}">
+                    الرئيسية
                 </a>
+
+                <a href="{{ url_for('about') }}">
+                    عن المنصة
+                </a>
+
+                <a href="{{ url_for('roadmap') }}">
+                    الرؤية المستقبلية
+                </a>
+
+                <a href="{{ url_for('pricing') }}">
+                    الباقات
+                </a>
+
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="تغيير وضع الألوان"
+                >
+                    <span class="theme-toggle-icon">☀</span>
+                </button>
 
                 <a
                     href="{{ url_for('new_case') }}"

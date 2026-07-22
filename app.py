@@ -186,6 +186,26 @@ def index():
 
     return render_template("index.html")
 
+@app.get("/about")
+def about():
+    """صفحة التعريف بالمنصة."""
+
+    return render_template("about.html")
+
+
+@app.get("/roadmap")
+def roadmap():
+    """صفحة الرؤية المستقبلية."""
+
+    return render_template("roadmap.html")
+
+
+@app.get("/pricing")
+def pricing():
+    """صفحة الباقات."""
+
+    return render_template("pricing.html")
+
 
 @app.get("/new-case")
 def new_case():
