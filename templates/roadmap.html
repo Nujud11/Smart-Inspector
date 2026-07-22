@@ -1,0 +1,540 @@
+{% extends "base.html" %}
+
+{% block title %}
+الرؤية المستقبلية | المعاين الذكي
+{% endblock %}
+
+{% block content %}
+
+<section class="roadmap-hero">
+    <div class="container roadmap-hero-grid">
+
+        <div class="roadmap-hero-content">
+            <span class="section-label">
+                الرؤية المستقبلية
+            </span>
+
+            <h1>
+                من نموذج أولي إلى
+                <span>منظومة معاينة مرورية متكاملة.</span>
+            </h1>
+
+            <p>
+                يوضح هذا التصور كيف يمكن تطوير المعاين الذكي مستقبلًا
+                ليصبح جزءًا من البنية الرقمية للمدن الذكية، من خلال الربط
+                مع الجهات المرورية وشركات التأمين والبلديات والخرائط
+                المكانية.
+            </p>
+
+            <div class="roadmap-hero-actions">
+                <a
+                    href="#future-stages"
+                    class="primary-button large"
+                >
+                    استعراض مراحل التطوير
+                </a>
+
+                <a
+                    href="{{ url_for('about') }}"
+                    class="secondary-button large"
+                >
+                    تعرف على المنصة
+                </a>
+            </div>
+        </div>
+
+        <div class="future-network-card">
+
+            <div class="network-center">
+                <span>AI</span>
+
+                <strong>
+                    المعاين الذكي
+                </strong>
+
+                <small>
+                    Smart Accident Inspector
+                </small>
+            </div>
+
+            <div class="network-node node-traffic">
+                <span>🚦</span>
+                <strong>المرور</strong>
+            </div>
+
+            <div class="network-node node-insurance">
+                <span>◈</span>
+                <strong>التأمين</strong>
+            </div>
+
+            <div class="network-node node-city">
+                <span>🏙</span>
+                <strong>المدينة الذكية</strong>
+            </div>
+
+            <div class="network-node node-maps">
+                <span>⌖</span>
+                <strong>الخرائط</strong>
+            </div>
+
+            <div class="network-line line-one"></div>
+            <div class="network-line line-two"></div>
+            <div class="network-line line-three"></div>
+            <div class="network-line line-four"></div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="future-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">
+                الرؤية
+            </span>
+
+            <h2>
+                معاينة رقمية تدعم سرعة الاستجابة
+            </h2>
+
+            <p>
+                تهدف الرؤية المستقبلية إلى اختصار وقت توثيق الحوادث
+                البسيطة، وتحويل البيانات الميدانية إلى معلومات منظمة
+                يمكن مشاركتها بين الجهات ذات العلاقة.
+            </p>
+        </div>
+
+        <div class="future-values-grid">
+
+            <article class="future-value-card">
+                <span class="future-value-icon">
+                    ⚡
+                </span>
+
+                <h3>
+                    استجابة أسرع
+                </h3>
+
+                <p>
+                    تقليل الوقت المستغرق بين وقوع الحادث وتوثيقه وإخلاء
+                    المركبات من الطريق.
+                </p>
+            </article>
+
+            <article class="future-value-card">
+                <span class="future-value-icon">
+                    ◉
+                </span>
+
+                <h3>
+                    بيانات موحدة
+                </h3>
+
+                <p>
+                    توحيد الصور والمعلومات والنتائج داخل تقرير رقمي منظم
+                    وقابل للمراجعة.
+                </p>
+            </article>
+
+            <article class="future-value-card">
+                <span class="future-value-icon">
+                    ⛓
+                </span>
+
+                <h3>
+                    تكامل مؤسسي
+                </h3>
+
+                <p>
+                    ربط الجهات المرورية وشركات التأمين والبلديات ضمن
+                    تدفق بيانات واحد.
+                </p>
+            </article>
+
+            <article class="future-value-card">
+                <span class="future-value-icon">
+                    ◇
+                </span>
+
+                <h3>
+                    قرارات قابلة للتفسير
+                </h3>
+
+                <p>
+                    عرض الأدلة والقواعد ودرجة الثقة بدل الاكتفاء بنتيجة
+                    غير مفسرة.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section
+    class="future-section future-stages-section"
+    id="future-stages"
+>
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">
+                مراحل التطوير
+            </span>
+
+            <h2>
+                مسار التحول من Prototype إلى منصة تشغيلية
+            </h2>
+
+            <p>
+                يمكن تطوير المشروع عبر مراحل متدرجة تبدأ بالنموذج الحالي
+                وتنتهي بمنظومة مترابطة مع الجهات والخدمات الحكومية.
+            </p>
+        </div>
+
+        <div class="roadmap-timeline">
+
+            <article class="roadmap-stage active-stage">
+                <div class="stage-marker">
+                    <span>01</span>
+                </div>
+
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <div>
+                            <span class="stage-status">
+                                المرحلة الحالية
+                            </span>
+
+                            <h3>
+                                النموذج الأولي
+                            </h3>
+                        </div>
+
+                        <strong>
+                            Prototype
+                        </strong>
+                    </div>
+
+                    <p>
+                        رفع صور الحادث، تحليل المركبات والأضرار، تطبيق
+                        قواعد أولية، وإنشاء تقرير يوضح النتيجة والأدلة.
+                    </p>
+
+                    <div class="stage-features">
+                        <span>تحليل الصور</span>
+                        <span>YOLO وGemini</span>
+                        <span>محرك قواعد</span>
+                        <span>تقرير رقمي</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="roadmap-stage">
+                <div class="stage-marker">
+                    <span>02</span>
+                </div>
+
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <div>
+                            <span class="stage-status">
+                                تطوير قريب
+                            </span>
+
+                            <h3>
+                                تحسين جمع البيانات
+                            </h3>
+                        </div>
+
+                        <strong>
+                            Smart Capture
+                        </strong>
+                    </div>
+
+                    <p>
+                        توجيه المستخدم لالتقاط الصور أو الفيديو من زوايا
+                        محددة، مع فحص جودة الصور قبل إرسالها للتحليل.
+                    </p>
+
+                    <div class="stage-features">
+                        <span>تصوير موجه</span>
+                        <span>فحص الجودة</span>
+                        <span>GPS</span>
+                        <span>وقت وموقع الحادث</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="roadmap-stage">
+                <div class="stage-marker">
+                    <span>03</span>
+                </div>
+
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <div>
+                            <span class="stage-status">
+                                تكامل مستقبلي
+                            </span>
+
+                            <h3>
+                                الربط مع الخرائط والبلديات
+                            </h3>
+                        </div>
+
+                        <strong>
+                            GIS Integration
+                        </strong>
+                    </div>
+
+                    <p>
+                        استخدام إحداثيات الحادث وربطها بخرائط GIS لفهم
+                        عدد المسارات واتجاه الطريق والإشارات والخطوط
+                        المرورية.
+                    </p>
+
+                    <div class="stage-features">
+                        <span>GIS</span>
+                        <span>معلومات الطريق</span>
+                        <span>الإشارات</span>
+                        <span>المسارات</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="roadmap-stage">
+                <div class="stage-marker">
+                    <span>04</span>
+                </div>
+
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <div>
+                            <span class="stage-status">
+                                تكامل مؤسسي
+                            </span>
+
+                            <h3>
+                                الربط مع المرور والتأمين
+                            </h3>
+                        </div>
+
+                        <strong>
+                            Connected Services
+                        </strong>
+                    </div>
+
+                    <p>
+                        إرسال التقارير الرقمية آليًا إلى الجهة المرورية
+                        وشركة التأمين، مع تتبع حالة الحادث والمطالبة.
+                    </p>
+
+                    <div class="stage-features">
+                        <span>API Integration</span>
+                        <span>المرور</span>
+                        <span>التأمين</span>
+                        <span>تتبع الحالة</span>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="roadmap-stage">
+                <div class="stage-marker">
+                    <span>05</span>
+                </div>
+
+                <div class="stage-content">
+                    <div class="stage-header">
+                        <div>
+                            <span class="stage-status">
+                                الرؤية النهائية
+                            </span>
+
+                            <h3>
+                                منصة للمدن الذكية
+                            </h3>
+                        </div>
+
+                        <strong>
+                            Smart City Platform
+                        </strong>
+                    </div>
+
+                    <p>
+                        الاستفادة من بيانات الحوادث المجمعة لاكتشاف النقاط
+                        الخطرة، وتحسين تخطيط الطرق، ودعم القرارات الاستباقية.
+                    </p>
+
+                    <div class="stage-features">
+                        <span>تحليلات تنبؤية</span>
+                        <span>النقاط السوداء</span>
+                        <span>لوحات مؤشرات</span>
+                        <span>دعم القرار</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="future-section integrations-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">
+                التكاملات المستقبلية
+            </span>
+
+            <h2>
+                منظومة واحدة تربط جميع الأطراف
+            </h2>
+        </div>
+
+        <div class="integrations-grid">
+
+            <article class="integration-card">
+                <div class="integration-card-top">
+                    <span class="integration-icon">
+                        🚓
+                    </span>
+
+                    <span class="integration-state">
+                        مستقبلي
+                    </span>
+                </div>
+
+                <h3>
+                    الجهات المرورية
+                </h3>
+
+                <p>
+                    استقبال التقارير ومراجعة الحوادث وتوثيق القرارات
+                    والإجراءات إلكترونيًا.
+                </p>
+            </article>
+
+            <article class="integration-card">
+                <div class="integration-card-top">
+                    <span class="integration-icon">
+                        🛡
+                    </span>
+
+                    <span class="integration-state">
+                        مستقبلي
+                    </span>
+                </div>
+
+                <h3>
+                    شركات التأمين
+                </h3>
+
+                <p>
+                    تسريع معالجة المطالبات ومشاركة الأدلة ونسب الخطأ
+                    والتقرير الرقمي.
+                </p>
+            </article>
+
+            <article class="integration-card">
+                <div class="integration-card-top">
+                    <span class="integration-icon">
+                        🗺
+                    </span>
+
+                    <span class="integration-state">
+                        مستقبلي
+                    </span>
+                </div>
+
+                <h3>
+                    البلديات وGIS
+                </h3>
+
+                <p>
+                    جلب معلومات الطريق والإشارات والمسارات وتحليل مواقع
+                    تكرار الحوادث.
+                </p>
+            </article>
+
+            <article class="integration-card">
+                <div class="integration-card-top">
+                    <span class="integration-icon">
+                        📊
+                    </span>
+
+                    <span class="integration-state">
+                        مستقبلي
+                    </span>
+                </div>
+
+                <h3>
+                    مراكز التحكم
+                </h3>
+
+                <p>
+                    عرض مؤشرات الحوادث ومواقع الخطورة ودعم الاستجابة
+                    واتخاذ القرار.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="future-impact-section">
+    <div class="container">
+
+        <div class="future-impact-card">
+
+            <div class="impact-content">
+                <span>
+                    الأثر المتوقع
+                </span>
+
+                <h2>
+                    طرق أكثر انسيابية، وتقارير أوضح، وقرارات أسرع.
+                </h2>
+
+                <p>
+                    الرؤية المستقبلية للمشروع لا تقتصر على تحليل حادث واحد،
+                    بل تمتد إلى بناء بيانات تساعد الجهات على فهم أنماط
+                    الحوادث وتحسين السلامة المرورية.
+                </p>
+            </div>
+
+            <div class="impact-stats">
+                <div>
+                    <strong>أسرع</strong>
+                    <span>في توثيق الحوادث</span>
+                </div>
+
+                <div>
+                    <strong>أوضح</strong>
+                    <span>في عرض الأدلة</span>
+                </div>
+
+                <div>
+                    <strong>أذكى</strong>
+                    <span>في دعم القرار</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

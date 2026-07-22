@@ -1,0 +1,369 @@
+{% extends "base.html" %}
+
+{% block title %}
+الباقات | المعاين الذكي
+{% endblock %}
+
+{% block content %}
+
+<section class="pricing-hero">
+    <div class="container pricing-hero-content">
+
+        <span class="section-label">
+            الباقات
+        </span>
+
+        <h1>
+            باقات مرنة تناسب
+            <span>احتياج كل جهة.</span>
+        </h1>
+
+        <p>
+            واجهة تجريبية توضح كيف يمكن تقديم المعاين الذكي مستقبلًا
+            كباقات مختلفة للأفراد والمنشآت والجهات الكبيرة.
+        </p>
+
+        <div class="pricing-note">
+            <span>i</span>
+
+            <p>
+                الأسعار والاشتراكات المعروضة لأغراض النموذج الأولي فقط،
+                ولا توجد عملية دفع فعلية حاليًا.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="pricing-section">
+    <div class="container">
+
+        <div class="pricing-grid">
+
+            <article class="pricing-card">
+
+                <div class="pricing-card-header">
+                    <span class="pricing-plan-name">
+                        Starter
+                    </span>
+
+                    <h2>
+                        البداية
+                    </h2>
+
+                    <p>
+                        مناسبة لتجربة المنصة وإنشاء عدد محدود من التقارير.
+                    </p>
+                </div>
+
+                <div class="pricing-value">
+                    <strong>مجانًا</strong>
+                    <span>نموذج تجريبي</span>
+                </div>
+
+                <div class="pricing-limit">
+                    <strong>5</strong>
+                    <span>تقارير حوادث</span>
+                </div>
+
+                <ul class="pricing-features">
+                    <li>رفع وتحليل صور الحادث</li>
+                    <li>تقرير أولي قابل للتفسير</li>
+                    <li>عرض الأدلة المكتشفة</li>
+                    <li>درجة ثقة للتحليل</li>
+                </ul>
+
+                <a
+                    href="{{ url_for('new_case') }}"
+                    class="pricing-button secondary-pricing-button"
+                >
+                    ابدأ التجربة
+                </a>
+
+            </article>
+
+
+            <article class="pricing-card featured-pricing-card">
+
+                <div class="recommended-badge">
+                    الأكثر مناسبة
+                </div>
+
+                <div class="pricing-card-header">
+                    <span class="pricing-plan-name">
+                        Professional
+                    </span>
+
+                    <h2>
+                        الاحترافية
+                    </h2>
+
+                    <p>
+                        مناسبة للمنشآت الصغيرة والفرق التي تحتاج تقارير أكثر.
+                    </p>
+                </div>
+
+                <div class="pricing-value">
+                    <strong>قريبًا</strong>
+                    <span>اشتراك شهري</span>
+                </div>
+
+                <div class="pricing-limit">
+                    <strong>30</strong>
+                    <span>تقرير حادث</span>
+                </div>
+
+                <ul class="pricing-features">
+                    <li>جميع مميزات الباقة المجانية</li>
+                    <li>عدد أكبر من التقارير</li>
+                    <li>سجل للحالات السابقة</li>
+                    <li>تصدير التقارير الرقمية</li>
+                    <li>دعم فني مخصص</li>
+                </ul>
+
+                <button
+                    type="button"
+                    class="pricing-button primary-pricing-button"
+                    disabled
+                >
+                    متاحة قريبًا
+                </button>
+
+            </article>
+
+
+            <article class="pricing-card">
+
+                <div class="pricing-card-header">
+                    <span class="pricing-plan-name">
+                        Enterprise
+                    </span>
+
+                    <h2>
+                        المؤسسات
+                    </h2>
+
+                    <p>
+                        مناسبة للجهات الكبيرة وشركات التأمين والقطاعات المرورية.
+                    </p>
+                </div>
+
+                <div class="pricing-value">
+                    <strong>مخصص</strong>
+                    <span>حسب احتياج الجهة</span>
+                </div>
+
+                <div class="pricing-limit">
+                    <strong>100</strong>
+                    <span>تقرير حادث</span>
+                </div>
+
+                <ul class="pricing-features">
+                    <li>جميع مميزات الباقة الاحترافية</li>
+                    <li>لوحة تحكم للجهة</li>
+                    <li>إدارة المستخدمين والصلاحيات</li>
+                    <li>تكاملات API مستقبلية</li>
+                    <li>تقارير ومؤشرات متقدمة</li>
+                </ul>
+
+                <button
+                    type="button"
+                    class="pricing-button enterprise-pricing-button"
+                    disabled
+                >
+                    تواصل معنا
+                </button>
+
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="pricing-comparison-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">
+                مقارنة الباقات
+            </span>
+
+            <h2>
+                اختر المستوى المناسب لاستخدامك
+            </h2>
+
+            <p>
+                يوضح الجدول التصور الأولي للخدمات التي يمكن توفيرها
+                ضمن كل باقة مستقبلًا.
+            </p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+
+            <table class="comparison-table">
+
+                <thead>
+                    <tr>
+                        <th>الميزة</th>
+                        <th>Starter</th>
+                        <th>Professional</th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>عدد التقارير</td>
+                        <td>5</td>
+                        <td>30</td>
+                        <td>100</td>
+                    </tr>
+
+                    <tr>
+                        <td>تحليل الصور بالذكاء الاصطناعي</td>
+                        <td><span class="available-feature">✓</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>تقرير قابل للتفسير</td>
+                        <td><span class="available-feature">✓</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>حفظ سجل الحالات</td>
+                        <td><span class="unavailable-feature">—</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>تصدير التقارير</td>
+                        <td><span class="unavailable-feature">—</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>إدارة المستخدمين</td>
+                        <td><span class="unavailable-feature">—</span></td>
+                        <td><span class="unavailable-feature">—</span></td>
+                        <td><span class="available-feature">✓</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>تكاملات API</td>
+                        <td><span class="unavailable-feature">—</span></td>
+                        <td><span class="unavailable-feature">—</span></td>
+                        <td><span class="future-feature">مستقبلي</span></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="pricing-use-cases-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">
+                لمن صُممت الباقات؟
+            </span>
+
+            <h2>
+                استخدامات مختلفة ضمن منصة واحدة
+            </h2>
+        </div>
+
+        <div class="pricing-use-cases-grid">
+
+            <article class="pricing-use-case-card">
+                <span class="use-case-icon">👤</span>
+
+                <h3>الأفراد</h3>
+
+                <p>
+                    تجربة توثيق حادث بسيط والحصول على تحليل أولي سريع.
+                </p>
+            </article>
+
+            <article class="pricing-use-case-card">
+                <span class="use-case-icon">🏢</span>
+
+                <h3>الشركات</h3>
+
+                <p>
+                    إدارة حالات مركبات المنشأة وحفظ التقارير في مكان واحد.
+                </p>
+            </article>
+
+            <article class="pricing-use-case-card">
+                <span class="use-case-icon">🛡</span>
+
+                <h3>شركات التأمين</h3>
+
+                <p>
+                    دعم مراجعة المطالبات من خلال تقارير موحدة وأدلة منظمة.
+                </p>
+            </article>
+
+            <article class="pricing-use-case-card">
+                <span class="use-case-icon">🚦</span>
+
+                <h3>الجهات المرورية</h3>
+
+                <p>
+                    دعم سرعة التوثيق وربط الحالات بمنظومة رقمية متكاملة.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="pricing-cta-section">
+    <div class="container">
+
+        <div class="pricing-cta-card">
+
+            <div>
+                <span>
+                    ابدأ الآن
+                </span>
+
+                <h2>
+                    جرّب الباقة المجانية وأنشئ أول تقرير ذكي
+                </h2>
+
+                <p>
+                    ارفع صور حادث تجريبي واكتشف طريقة تحليل المشهد
+                    وعرض الأدلة والنتائج.
+                </p>
+            </div>
+
+            <a
+                href="{{ url_for('new_case') }}"
+                class="light-button large"
+            >
+                تسجيل حادث
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
