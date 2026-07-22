@@ -1,0 +1,362 @@
+{% extends "base.html" %}
+
+{% block title %}
+عن المنصة | المعاين الذكي
+{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+    <div class="container about-hero-grid">
+
+        <div class="about-hero-content">
+            <span class="section-label">عن المنصة</span>
+
+            <h1>
+                معاينة مرورية ذكية،
+                <span>أسرع وأكثر وضوحًا.</span>
+            </h1>
+
+            <p>
+                المعاين الذكي هو نموذج أولي لمنصة تستخدم الرؤية الحاسوبية
+                والذكاء الاصطناعي لتحليل صور الحوادث المرورية، واستخراج
+                الأدلة الأساسية، ثم تطبيق قواعد مرورية واضحة لإنتاج تقرير
+                أولي قابل للتفسير.
+            </p>
+
+            <div class="about-hero-actions">
+                <a
+                    href="{{ url_for('new_case') }}"
+                    class="primary-button large"
+                >
+                    تسجيل حادث جديد
+                </a>
+
+                <a
+                    href="#how-it-works"
+                    class="secondary-button large"
+                >
+                    كيف تعمل المنصة؟
+                </a>
+            </div>
+        </div>
+
+        <div class="about-highlight-card">
+            <span class="highlight-badge">
+                نموذج أولي
+            </span>
+
+            <h2>
+                من صور الحادث إلى تقرير مفهوم
+            </h2>
+
+            <p>
+                تجمع المنصة بين تحليل الصور، فهم المشهد، وتطبيق القواعد
+                للوصول إلى نتيجة أولية مدعومة بالأدلة.
+            </p>
+
+            <div class="highlight-flow">
+                <div>
+                    <strong>01</strong>
+                    <span>رفع الصور</span>
+                </div>
+
+                <i>←</i>
+
+                <div>
+                    <strong>02</strong>
+                    <span>تحليل ذكي</span>
+                </div>
+
+                <i>←</i>
+
+                <div>
+                    <strong>03</strong>
+                    <span>تقرير قابل للتفسير</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="about-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">المشكلة</span>
+
+            <h2>
+                لماذا نحتاج إلى معاينة مرورية أكثر ذكاءً؟
+            </h2>
+
+            <p>
+                بعد وقوع الحوادث البسيطة قد تستغرق عملية التوثيق والمعاينة
+                وقتًا، مما يسبب ازدحامًا إضافيًا ويؤخر إخلاء الطريق.
+            </p>
+        </div>
+
+        <div class="problem-grid">
+
+            <article class="information-card">
+                <span class="information-icon">⏱</span>
+
+                <h3>تأخر المعاينة</h3>
+
+                <p>
+                    انتظار المعاين الميداني قد يطيل بقاء المركبات في موقع
+                    الحادث ويزيد الازدحام.
+                </p>
+            </article>
+
+            <article class="information-card">
+                <span class="information-icon">◈</span>
+
+                <h3>تفاوت التوثيق</h3>
+
+                <p>
+                    جودة الصور والمعلومات تختلف من حالة إلى أخرى، مما قد
+                    يصعب فهم تسلسل الحادث.
+                </p>
+            </article>
+
+            <article class="information-card">
+                <span class="information-icon">⚖</span>
+
+                <h3>الحاجة إلى تفسير واضح</h3>
+
+                <p>
+                    لا تكفي النتيجة وحدها؛ بل يجب توضيح الأدلة والقواعد التي
+                    بُني عليها القرار.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="about-section solution-section">
+    <div class="container solution-grid">
+
+        <div class="solution-content">
+            <span class="section-label">الحل</span>
+
+            <h2>
+                منصة تحول صور الحادث إلى أدلة منظمة
+            </h2>
+
+            <p>
+                يرفع المستخدم صور الحادث من الزوايا المطلوبة، ثم تبدأ المنصة
+                في اكتشاف المركبات وتحليل الأضرار وفهم المشهد المروري.
+                بعد ذلك تتم مقارنة النتائج مع قواعد محددة لإنتاج تقرير أولي.
+            </p>
+
+            <ul class="solution-list">
+                <li>
+                    اكتشاف المركبات والعناصر الظاهرة في الصور.
+                </li>
+
+                <li>
+                    تحليل مواقع الضرر والعلاقة بين المركبات.
+                </li>
+
+                <li>
+                    تطبيق قواعد مرورية قابلة للمراجعة.
+                </li>
+
+                <li>
+                    إنشاء تقرير واضح يبين الأدلة والاستنتاج.
+                </li>
+            </ul>
+        </div>
+
+        <div class="solution-panel">
+            <div class="solution-panel-header">
+                <span>مراحل التحليل</span>
+                <strong>3 طبقات</strong>
+            </div>
+
+            <div class="solution-layer">
+                <span class="layer-number">01</span>
+
+                <div>
+                    <strong>اكتشاف العناصر</strong>
+                    <small>YOLO Object Detection</small>
+                </div>
+            </div>
+
+            <div class="solution-layer">
+                <span class="layer-number">02</span>
+
+                <div>
+                    <strong>فهم المشهد والأضرار</strong>
+                    <small>Gemini Multimodal Vision</small>
+                </div>
+            </div>
+
+            <div class="solution-layer">
+                <span class="layer-number">03</span>
+
+                <div>
+                    <strong>تطبيق القواعد المرورية</strong>
+                    <small>Explainable Rule Engine</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section
+    class="about-section"
+    id="how-it-works"
+>
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">كيف تعمل المنصة؟</span>
+
+            <h2>
+                رحلة الحادث داخل النظام
+            </h2>
+
+            <p>
+                تمر الحالة بعدة خطوات مترابطة من إدخال الصور وحتى عرض التقرير.
+            </p>
+        </div>
+
+        <div class="workflow-grid">
+
+            <article class="workflow-card">
+                <span class="workflow-number">01</span>
+
+                <h3>توثيق الحادث</h3>
+
+                <p>
+                    يرفع المستخدم أربع صور واضحة للحادث من الزوايا المطلوبة.
+                </p>
+            </article>
+
+            <article class="workflow-card">
+                <span class="workflow-number">02</span>
+
+                <h3>تحليل الصور</h3>
+
+                <p>
+                    تُكتشف المركبات وتُحلل الأضرار والعلاقة المكانية بينها.
+                </p>
+            </article>
+
+            <article class="workflow-card">
+                <span class="workflow-number">03</span>
+
+                <h3>مطابقة القواعد</h3>
+
+                <p>
+                    تقارن النتائج مع مجموعة من السيناريوهات والقواعد المرورية.
+                </p>
+            </article>
+
+            <article class="workflow-card">
+                <span class="workflow-number">04</span>
+
+                <h3>توليد التقرير</h3>
+
+                <p>
+                    يعرض النظام النتيجة والأدلة ودرجة الثقة والتفسير.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="about-section technology-section">
+    <div class="container">
+
+        <div class="section-heading centered">
+            <span class="section-label">التقنيات</span>
+
+            <h2>
+                تقنيات تعمل معًا داخل منظومة واحدة
+            </h2>
+        </div>
+
+        <div class="technology-grid">
+
+            <article class="technology-card">
+                <span class="technology-name">YOLO</span>
+
+                <h3>الرؤية الحاسوبية</h3>
+
+                <p>
+                    اكتشاف المركبات والعناصر المهمة داخل صور الحادث.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <span class="technology-name">Gemini</span>
+
+                <h3>الفهم متعدد الوسائط</h3>
+
+                <p>
+                    تفسير المشهد والأضرار والعلاقة المرئية بين المركبات.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <span class="technology-name">Rules</span>
+
+                <h3>محرك القواعد</h3>
+
+                <p>
+                    تحويل نتائج التحليل إلى استنتاجات يمكن تفسيرها ومراجعتها.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <span class="technology-name">Flask</span>
+
+                <h3>منصة الويب</h3>
+
+                <p>
+                    تشغيل تجربة المستخدم وربط مراحل التحليل وإنتاج التقرير.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="about-cta">
+    <div class="container">
+
+        <div class="about-cta-card">
+            <div>
+                <span>ابدأ تجربة النموذج الأولي</span>
+
+                <h2>
+                    وثّق حادثًا واكتشف كيف يعمل التحليل الذكي
+                </h2>
+            </div>
+
+            <a
+                href="{{ url_for('new_case') }}"
+                class="light-button large"
+            >
+                تسجيل حادث
+            </a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
