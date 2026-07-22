@@ -57,21 +57,48 @@
 <body>
     <header class="site-header">
         <div class="container navigation">
-            <a href="{{ url_for('index') }}" class="brand">
-                <span class="brand-logo">
-                    <img
-                        src="{{ url_for('static', filename='images/smart-inspector-logo.png') }}"
-                        alt="شعار المعاين الذكي"
+
+            <div class="navigation-top">
+                <a href="{{ url_for('index') }}" class="brand">
+                    <span class="brand-logo">
+                        <img
+                            src="{{ url_for('static', filename='images/smart-inspector-logo.png') }}"
+                            alt="شعار المعاين الذكي"
+                        >
+                    </span>
+
+                    <span class="brand-text">
+                        <strong>المعاين الذكي</strong>
+                        <small>Smart Accident Inspector</small>
+                    </span>
+                </a>
+
+                <div class="navigation-actions">
+                    <button
+                        type="button"
+                        class="theme-toggle"
+                        id="themeToggle"
+                        aria-label="تغيير وضع الألوان"
+                        aria-pressed="false"
                     >
-                </span>
+                        <span class="theme-toggle-track">
+                            <span class="theme-toggle-thumb">
+                                <span class="theme-icon theme-icon-sun">☀</span>
+                                <span class="theme-icon theme-icon-moon">☾</span>
+                            </span>
+                        </span>
+                    </button>
 
-                <span class="brand-text">
-                    <strong>المعاين الذكي</strong>
-                    <small>Smart Accident Inspector</small>
-                </span>
-            </a>
+                    <a
+                        href="{{ url_for('new_case') }}"
+                        class="nav-button"
+                    >
+                        تسجيل حادث
+                    </a>
+                </div>
+            </div>
 
-            <nav class="nav-links">
+            <nav class="nav-links" aria-label="التنقل الرئيسي">
                 <a href="{{ url_for('index') }}">
                     الرئيسية
                 </a>
@@ -91,32 +118,10 @@
                 <a href="{{ url_for('pricing') }}">
                     الباقات
                 </a>
-
-                <button
-                    type="button"
-                    class="theme-toggle"
-                    id="themeToggle"
-                    aria-label="تغيير وضع الألوان"
-                    aria-pressed="false"
-                >
-                    <span class="theme-toggle-track">
-                        <span class="theme-toggle-thumb">
-                            <span class="theme-icon theme-icon-sun">☀</span>
-                            <span class="theme-icon theme-icon-moon">☾</span>
-                        </span>
-                    </span>
-                </button>
-
-                <a
-                    href="{{ url_for('new_case') }}"
-                    class="nav-button"
-                >
-                    تسجيل حادث
-                </a>
             </nav>
+
         </div>
     </header>
-
     <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
